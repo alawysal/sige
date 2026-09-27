@@ -1,0 +1,15 @@
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const vm=require('node:vm');
+const root=path.resolve(__dirname,'..');
+const source=fs.readFileSync(path.join(root,'frontend/src/app/promax/promax-renderer.js'),'utf8');
+const reference=fs.readFileSync(path.join(root,'000_form.html'),'utf8');
+new vm.Script(source.replace('export function','function'));
+assert(!/localStorage|sessionStorage|new Function|\beval\s*\(|<iframe/.test(source));
+assert(!/\son(?:click|input|change)="/.test(source));
+const views=[...reference.matchAll(/VIEWS(?:\.(\w+)|\['([^']+)'\])\s*=/g)].map(m=>m[1]||m[2]);
+for(const view of views)assert(source.includes('VIEWS.'+view+' =')||source.includes("VIEWS['"+view+"'] ="),'Missing feature: '+view);
+const css=fs.readFileSync(path.join(root,'frontend/src/styles.css'),'utf8');
+assert(css.includes(reference.split('<style>')[1].split('</style>')[0]),'The original design stylesheet must be preserved');
+console.log('Renderer: all '+views.length+' reference views, original CSS, closure events and no browser database verified.');

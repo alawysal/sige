@@ -1,0 +1,26 @@
+const {chromium}=require('playwright');const fs=require('node:fs');const path=require('node:path');const assert=require('node:assert/strict');const {PNG}=require('pngjs');
+(async()=>{
+ fs.mkdirSync(path.join(__dirname,'../artifacts'),{recursive:true});
+ const browser=await chromium.launch({channel:'chrome',headless:true});
+ const context=await browser.newContext({viewport:{width:1440,height:1000},deviceScaleFactor:1});
+ const reference=await context.newPage(),app=await context.newPage();
+ const errors=[];app.on('pageerror',e=>errors.push(e.message));
+ await reference.goto('http://127.0.0.1:4201/reference.html');await app.goto('http://127.0.0.1:4201');
+ await app.locator('#lgUser').waitFor();
+ const first=await reference.screenshot({path:'artifacts/reference-login.png'}),second=await app.screenshot({path:'artifacts/angular-login.png'});
+ const a=PNG.sync.read(first),b=PNG.sync.read(second);let different=0;for(let i=0;i<a.data.length;i+=4)if(Math.abs(a.data[i]-b.data[i])+Math.abs(a.data[i+1]-b.data[i+1])+Math.abs(a.data[i+2]-b.data[i+2])>30)different++;
+ const ratio=different/(a.width*a.height);console.log('Login visual difference:',(ratio*100).toFixed(3)+'%');
+ const measure=page=>page.locator('.login-shell').boundingBox();console.log('Reference shell:',await measure(reference),'Angular shell:',await measure(app));assert(ratio<.02,'Login diverged from reference');assert.equal(errors.length,0,errors.join('\n'));
+ await app.setViewportSize({width:390,height:844});await app.screenshot({path:'artifacts/angular-login-mobile.png'});assert(await app.locator('.login-form').isVisible());
+ await app.setViewportSize({width:1440,height:1000});
+ await reference.locator('.demo code').first().click();await app.locator('.demo code').first().click();await app.locator('#view .stats').waitFor();
+ const refDashboard=await reference.screenshot({path:'artifacts/reference-dashboard.png'}),appDashboard=await app.screenshot({path:'artifacts/angular-dashboard.png'});
+ const rd=PNG.sync.read(refDashboard),ad=PNG.sync.read(appDashboard);let dashboardDiff=0;for(let i=0;i<rd.data.length;i+=4)if(Math.abs(rd.data[i]-ad.data[i])+Math.abs(rd.data[i+1]-ad.data[i+1])+Math.abs(rd.data[i+2]-ad.data[i+2])>30)dashboardDiff++;
+ const dashboardRatio=dashboardDiff/(rd.width*rd.height);console.log('Dashboard visual difference:',(dashboardRatio*100).toFixed(3)+'%');assert(dashboardRatio<.025,'Dashboard layout diverged from reference');
+ await reference.locator('#nav a').filter({hasText:'Alunos'}).click();await app.locator('#nav a[href="/app/alunos"]').click();
+ await reference.getByRole('button',{name:/Novo Aluno/}).click();await app.getByRole('button',{name:/Novo Aluno/}).click();
+ await Promise.all([reference,app].map(page=>page.locator('.modal-box').evaluate(el=>Promise.all(el.getAnimations().map(animation=>animation.finished)))));
+ const refModal=await reference.locator('.modal-box').boundingBox(),appModal=await app.locator('.modal-box').boundingBox();assert.deepEqual(appModal,refModal);
+ await app.screenshot({path:'artifacts/angular-student-form.png'});await reference.screenshot({path:'artifacts/reference-student-form.png'});
+ assert.equal(errors.length,0,errors.join('\n'));await browser.close();console.log('Visual login, dashboard and student form checks passed.');
+})().catch(e=>{console.error(e);process.exit(1);});

@@ -1,0 +1,8 @@
+.env
+node_modules/
+frontend/dist/
+frontend/.angular/
+backend/target/
+artifacts/
+.metals/
+.DS_Store

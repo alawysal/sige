@@ -1,0 +1,1 @@
+Código da implementação anterior, preservado como referência e fora da compilação Maven. A aplicação activa encontra-se em `src/main/java/com/escola/gestaoescolar/sige`. As tabelas antigas não são removidas pelas novas migrações.

@@ -1,0 +1,79 @@
+
+
+<!-- ============ LOGIN ============ -->
+<div id="login" [class.hidden]="!!db">
+  <div class="login-shell">
+    <div class="login-hero">
+      <div>
+        <div class="tag">Sistema Integrado</div>
+        <h1>SIGE <span>Guiné-Bissau</span></h1>
+        <p>Plataforma completa de gestão escolar — matrículas, renovações plurianuais, avaliações trimestrais com notas inteiras, exames finais, provas de recurso, propinas em FCFA e documentação oficial.</p>
+        <ul>
+          <li>Matrículas e renovações pendentes por ano lectivo</li>
+          <li>3 Trimestres (MAC · NPP · NPT) + Exame Final + Recurso</li>
+          <li>Regras de aprovação configuráveis por classe</li>
+          <li>Bloqueio automático de notas após submissão</li>
+          <li>Boletins, certificados, diplomas e pautas</li>
+          <li>Multiusuário com privilégios por perfil</li>
+        </ul>
+      </div>
+      <div class="foot">© 2026 SIGE Guiné-Bissau · v4.0</div>
+    </div>
+    <form class="login-form" (ngSubmit)="login()" #loginForm="ngForm">
+      <h2>Iniciar Sessão</h2>
+      <p class="sub">Introduza as suas credenciais de acesso</p>
+      <div id="loginErr" role="alert" [style.display]="loginError ? 'block' : 'none'">{{loginError}}</div>
+      <label for="lgUser">Utilizador</label>
+      <input id="lgUser" name="username" [(ngModel)]="username" required placeholder="ex.: admin" autocomplete="username">
+      <label for="lgPass">Palavra-passe</label>
+      <input id="lgPass" name="password" [(ngModel)]="password" required type="password" placeholder="••••••••" autocomplete="current-password">
+      <button class="btn-login" type="submit" [disabled]="loggingIn || !loginForm.valid">{{loggingIn ? 'A ENTRAR…' : 'ENTRAR NO SISTEMA'}}</button>
+      <div class="demo">
+        <b>Contas de demonstração</b>
+        <div *ngFor="let account of accounts">{{account.icon}} <code role="button" tabindex="0" (click)="quickLogin(account.user,account.password)" (keydown.enter)="quickLogin(account.user,account.password)">{{account.user}} / {{account.password}}</code> · {{account.label}}</div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ============ APP ============ -->
+<div id="app" [class.hidden]="!db">
+  <aside class="sidebar" id="sidebar" [class.open]="sidebarOpen">
+    <div class="brand">
+      <div class="b-logo">SIGE</div>
+      <div><h2>SIGE Guiné-Bissau</h2><small>Gestão Escolar</small></div>
+    </div>
+    <nav id="nav" aria-label="Menu principal"><ng-container *ngFor="let item of navigation">
+      <div class="nav-group" *ngIf="item.heading">{{item.g}}</div>
+      <a [routerLink]="['/sige/app',item.k]" [class.active]="view===item.k" [attr.aria-current]="view===item.k ? 'page' : null" (click)="sidebarOpen=false"><i>{{item.i}}</i><span>{{item.l}}</span></a>
+    </ng-container></nav>
+    <div class="user-box">
+      <div class="avatar" id="uAvatar">{{initials}}</div>
+      <div class="u-info"><b id="uNome">{{db?.session?.Nome}}</b><span id="uPerfil">{{db?.session?.Perfil}}</span></div>
+      <button (click)="logoutOpen=true" aria-label="Terminar sessão" title="Terminar sessão">⏻</button>
+    </div>
+  </aside>
+  <div class="main">
+    <header class="topbar">
+      <button id="menuBtn" (click)="sidebarOpen=!sidebarOpen" aria-label="Abrir menu" [attr.aria-expanded]="sidebarOpen">☰</button>
+      <div style="flex:1;min-width:0">
+        <h1 id="pageTitle">{{title[0]}}</h1>
+        <div class="crumb" id="pageCrumb">{{title[1]}}</div>
+      </div>
+      <div class="chips d-flex align-items-center">
+        <span class="chip" id="anoChip">Ano Lectivo {{db?.config?.['anoActivo'] || '—'}}</span>
+      </div>
+    </header>
+    <section class="view" id="view" [attr.aria-busy]="busy"></section>
+  </div>
+</div>
+
+<div id="modalRoot"></div>
+<div id="toasts" aria-live="polite"></div>
+<div id="printArea"></div>
+
+<div class="sync-cover" *ngIf="busy" aria-label="A guardar dados" role="status"><span class="visually-hidden">A guardar dados…</span></div>
+<div class="modal" *ngIf="logoutOpen" (click)="logoutOpen=false" role="dialog" aria-modal="true" aria-labelledby="logoutTitle">
+ <div class="modal-box sm" (click)="$event.stopPropagation()"><div class="modal-head"><h3 id="logoutTitle">Terminar sessão</h3><button (click)="logoutOpen=false" aria-label="Fechar">✕</button></div><div class="modal-body">Deseja terminar a sessão actual?</div><div class="modal-foot"><button class="btn btn-ghost" (click)="logoutOpen=false">Cancelar</button><button class="btn btn-primary" (click)="logout()">Sair</button></div></div>
+</div>
+<router-outlet></router-outlet>

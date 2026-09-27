@@ -1,0 +1,2500 @@
+{
+  "__v": 3,
+  "config": {
+    "escolaNome": "Escola Secundária de Educação Nacional",
+    "escolaNIF": "400123456",
+    "escolaEndereco": "Av. da Independência, nº 120",
+    "escolaMunicipio": "Maputo",
+    "escolaProvincia": "Maputo",
+    "escolaTelefone": "+258 21 300 000",
+    "escolaEmail": "geral@escolanacional.mz",
+    "escolaDiretor": "Dr. Aníbal Machava",
+    "anoActivo": "2026/2027",
+    "escalaMax": 20,
+    "notaMinima": 10,
+    "notaRecursoMin": 8,
+    "pesoMediaAnual": 0.7,
+    "pesoExameFinal": 0.3,
+    "moeda": "MT"
+  },
+  "anosLectivos": [
+    {
+      "Ano": "2025/2026",
+      "Estado": "Encerrado",
+      "DataAbertura": "2025-01-15",
+      "DataFecho": "2025-12-15"
+    },
+    {
+      "Ano": "2026/2027",
+      "Estado": "Aberto",
+      "DataAbertura": "2026-01-15",
+      "DataFecho": "2026-12-15"
+    },
+    {
+      "Ano": "2027/2028",
+      "Estado": "Planeado",
+      "DataAbertura": "2027-01-15",
+      "DataFecho": "2027-12-15"
+    }
+  ],
+  "escolas": [
+    {
+      "CodEscola": "ESC001",
+      "Nome": "Escola Secundária de Educação Nacional",
+      "NIF": "400123456",
+      "Endereco": "Av. da Independência, nº 120",
+      "Municipio": "Maputo",
+      "Provincia": "Maputo",
+      "Telefone": "+258 21 300 000",
+      "Email": "geral@escolanacional.mz",
+      "Diretor": "Dr. Aníbal Machava",
+      "AnoLetivo": "2026/2027"
+    }
+  ],
+  "cursos": [
+    {
+      "CodCurso": "CUR001",
+      "Nome": "Informática de Gestão",
+      "Area": "Tecnologias",
+      "Nivel": "Técnico",
+      "Duracao": 4,
+      "AnosActivos": [
+        "2026/2027",
+        "2027/2028"
+      ]
+    },
+    {
+      "CodCurso": "CUR002",
+      "Nome": "Contabilidade e Gestão",
+      "Area": "Economia",
+      "Nivel": "Técnico",
+      "Duracao": 4,
+      "AnosActivos": [
+        "2026/2027",
+        "2027/2028"
+      ]
+    },
+    {
+      "CodCurso": "CUR003",
+      "Nome": "Electrónica e Telecomunicações",
+      "Area": "Engenharia",
+      "Nivel": "Técnico",
+      "Duracao": 4,
+      "AnosActivos": [
+        "2026/2027",
+        "2027/2028"
+      ]
+    },
+    {
+      "CodCurso": "CUR004",
+      "Nome": "Construção Civil",
+      "Area": "Engenharia",
+      "Nivel": "Técnico",
+      "Duracao": 4,
+      "AnosActivos": [
+        "2026/2027"
+      ]
+    },
+    {
+      "CodCurso": "CUR005",
+      "Nome": "Ciências Sociais e Humanas",
+      "Area": "Letras e Humanidades",
+      "Nivel": "Médio",
+      "Duracao": 2,
+      "AnosActivos": [
+        "2026/2027",
+        "2027/2028"
+      ]
+    }
+  ],
+  "classes": [
+    {
+      "IdClasse": 1,
+      "Classe": "8ª Classe",
+      "Inscricao": 350,
+      "Propina": 450,
+      "Duracao": 12,
+      "Valor": 5400,
+      "MaxNegativas": 3,
+      "NegRecurso": 5,
+      "NotaRecurso": 8,
+      "CodEscola": "ESC001"
+    },
+    {
+      "IdClasse": 2,
+      "Classe": "9ª Classe",
+      "Inscricao": 400,
+      "Propina": 500,
+      "Duracao": 12,
+      "Valor": 6000,
+      "MaxNegativas": 3,
+      "NegRecurso": 5,
+      "NotaRecurso": 8,
+      "CodEscola": "ESC001"
+    },
+    {
+      "IdClasse": 3,
+      "Classe": "10ª Classe",
+      "Inscricao": 500,
+      "Propina": 650,
+      "Duracao": 12,
+      "Valor": 7800,
+      "MaxNegativas": 3,
+      "NegRecurso": 4,
+      "NotaRecurso": 8,
+      "CodEscola": "ESC001"
+    },
+    {
+      "IdClasse": 4,
+      "Classe": "11ª Classe",
+      "Inscricao": 550,
+      "Propina": 700,
+      "Duracao": 12,
+      "Valor": 8400,
+      "MaxNegativas": 2,
+      "NegRecurso": 4,
+      "NotaRecurso": 9,
+      "CodEscola": "ESC001"
+    },
+    {
+      "IdClasse": 5,
+      "Classe": "12ª Classe",
+      "Inscricao": 600,
+      "Propina": 800,
+      "Duracao": 12,
+      "Valor": 9600,
+      "MaxNegativas": 1,
+      "NegRecurso": 3,
+      "NotaRecurso": 9,
+      "CodEscola": "ESC001"
+    }
+  ],
+  "materias": [
+    {
+      "IdMateria": 1,
+      "Materia": "Língua Portuguesa",
+      "Sigla": "POR",
+      "CargaHoraria": 120
+    },
+    {
+      "IdMateria": 2,
+      "Materia": "Matemática",
+      "Sigla": "MAT",
+      "CargaHoraria": 140
+    },
+    {
+      "IdMateria": 3,
+      "Materia": "Inglês",
+      "Sigla": "ING",
+      "CargaHoraria": 100
+    },
+    {
+      "IdMateria": 4,
+      "Materia": "História",
+      "Sigla": "HIS",
+      "CargaHoraria": 80
+    },
+    {
+      "IdMateria": 5,
+      "Materia": "Geografia",
+      "Sigla": "GEO",
+      "CargaHoraria": 80
+    },
+    {
+      "IdMateria": 6,
+      "Materia": "Biologia",
+      "Sigla": "BIO",
+      "CargaHoraria": 100
+    },
+    {
+      "IdMateria": 7,
+      "Materia": "Física",
+      "Sigla": "FIS",
+      "CargaHoraria": 100
+    },
+    {
+      "IdMateria": 8,
+      "Materia": "Química",
+      "Sigla": "QUI",
+      "CargaHoraria": 100
+    },
+    {
+      "IdMateria": 9,
+      "Materia": "Tecnologias de Informação",
+      "Sigla": "TIC",
+      "CargaHoraria": 120
+    },
+    {
+      "IdMateria": 10,
+      "Materia": "Filosofia",
+      "Sigla": "FIL",
+      "CargaHoraria": 60
+    },
+    {
+      "IdMateria": 11,
+      "Materia": "Contabilidade Geral",
+      "Sigla": "CON",
+      "CargaHoraria": 120
+    },
+    {
+      "IdMateria": 12,
+      "Materia": "Programação",
+      "Sigla": "PRG",
+      "CargaHoraria": 120
+    },
+    {
+      "IdMateria": 13,
+      "Materia": "Desenho Técnico",
+      "Sigla": "DTR",
+      "CargaHoraria": 80
+    },
+    {
+      "IdMateria": 14,
+      "Materia": "Educação Física",
+      "Sigla": "EDF",
+      "CargaHoraria": 60
+    }
+  ],
+  "turmas": [
+    {
+      "CodTurma": "T001",
+      "Turma": "A",
+      "Classe": "10ª Classe",
+      "Curso": "CUR001",
+      "Ano": "2026/2027",
+      "Turno": "Manhã",
+      "Sala": "S1",
+      "Capacidade": 45,
+      "CodEscola": "ESC001",
+      "CodFuncionario": "FUN001",
+      "Estado": "Activa"
+    },
+    {
+      "CodTurma": "T002",
+      "Turma": "B",
+      "Classe": "10ª Classe",
+      "Curso": "CUR002",
+      "Ano": "2026/2027",
+      "Turno": "Tarde",
+      "Sala": "S3",
+      "Capacidade": 42,
+      "CodEscola": "ESC001",
+      "CodFuncionario": "FUN002",
+      "Estado": "Activa"
+    },
+    {
+      "CodTurma": "T003",
+      "Turma": "A",
+      "Classe": "11ª Classe",
+      "Curso": "CUR001",
+      "Ano": "2026/2027",
+      "Turno": "Manhã",
+      "Sala": "S5",
+      "Capacidade": 38,
+      "CodEscola": "ESC001",
+      "CodFuncionario": "FUN001",
+      "Estado": "Activa"
+    },
+    {
+      "CodTurma": "T004",
+      "Turma": "A",
+      "Classe": "12ª Classe",
+      "Curso": "CUR003",
+      "Ano": "2026/2027",
+      "Turno": "Noite",
+      "Sala": "S7",
+      "Capacidade": 35,
+      "CodEscola": "ESC001",
+      "CodFuncionario": "FUN003",
+      "Estado": "Activa"
+    },
+    {
+      "CodTurma": "T005",
+      "Turma": "A",
+      "Classe": "10ª Classe",
+      "Curso": "CUR005",
+      "Ano": "2026/2027",
+      "Turno": "Manhã",
+      "Sala": "S2",
+      "Capacidade": 40,
+      "CodEscola": "ESC001",
+      "CodFuncionario": "FUN002",
+      "Estado": "Activa"
+    }
+  ],
+  "funcionarios": [
+    {
+      "IdFuncionario": "FUN001",
+      "Nome": "Carlos Alberto Macuácua",
+      "Sexo": "M",
+      "DataN": "1985-04-12",
+      "BI": "110100234567A",
+      "Emissao": "2008-06-10",
+      "NIF": "123456789",
+      "Movel": "+258 84 111 2233",
+      "Email": "c.macuacua@escola.mz",
+      "Nivel": "Licenciatura",
+      "Especialidade": "Informática",
+      "Categoria": "Docente",
+      "Regime": "Tempo Integral",
+      "Banco": "BCI",
+      "Conta": "1234567890",
+      "Data": "2015-02-01"
+    },
+    {
+      "IdFuncionario": "FUN002",
+      "Nome": "Ana Maria Chissano",
+      "Sexo": "F",
+      "DataN": "1990-09-23",
+      "BI": "110200345678B",
+      "Emissao": "2012-03-15",
+      "NIF": "223456789",
+      "Movel": "+258 82 222 3344",
+      "Email": "a.chissano@escola.mz",
+      "Nivel": "Licenciatura",
+      "Especialidade": "Matemática",
+      "Categoria": "Docente",
+      "Regime": "Tempo Integral",
+      "Banco": "Millennium",
+      "Conta": "2345678901",
+      "Data": "2016-03-01"
+    },
+    {
+      "IdFuncionario": "FUN003",
+      "Nome": "Jorge Nhampossa",
+      "Sexo": "M",
+      "DataN": "1982-01-30",
+      "BI": "110300456789C",
+      "Emissao": "2005-11-20",
+      "NIF": "323456789",
+      "Movel": "+258 84 333 4455",
+      "Email": "j.nhampossa@escola.mz",
+      "Nivel": "Mestrado",
+      "Especialidade": "Física",
+      "Categoria": "Docente",
+      "Regime": "Efectivo",
+      "Banco": "BCI",
+      "Conta": "3456789012",
+      "Data": "2012-01-15"
+    },
+    {
+      "IdFuncionario": "FUN004",
+      "Nome": "Marta José Sitoe",
+      "Sexo": "F",
+      "DataN": "1992-07-17",
+      "BI": "110400567890D",
+      "Emissao": "2014-08-01",
+      "NIF": "423456789",
+      "Movel": "+258 86 444 5566",
+      "Email": "m.sitoe@escola.mz",
+      "Nivel": "Licenciatura",
+      "Especialidade": "Contabilidade",
+      "Categoria": "Docente",
+      "Regime": "Contrato",
+      "Banco": "BIM",
+      "Conta": "4567890123",
+      "Data": "2018-02-05"
+    },
+    {
+      "IdFuncionario": "FUN005",
+      "Nome": "Paulo Muianga",
+      "Sexo": "M",
+      "DataN": "1979-12-05",
+      "BI": "110500678901E",
+      "Emissao": "2002-05-25",
+      "NIF": "523456789",
+      "Movel": "+258 84 555 6677",
+      "Email": "p.muianga@escola.mz",
+      "Nivel": "Licenciatura",
+      "Especialidade": "Gestão Escolar",
+      "Categoria": "Director",
+      "Regime": "Efectivo",
+      "Banco": "BIM",
+      "Conta": "5678901234",
+      "Data": "2010-06-01"
+    },
+    {
+      "IdFuncionario": "FUN006",
+      "Nome": "Luísa Fernanda Cuna",
+      "Sexo": "F",
+      "DataN": "1994-03-28",
+      "BI": "110600789012F",
+      "Emissao": "2016-09-12",
+      "NIF": "623456789",
+      "Movel": "+258 82 666 7788",
+      "Email": "l.cuna@escola.mz",
+      "Nivel": "Médio",
+      "Especialidade": "Secretariado",
+      "Categoria": "Secretario",
+      "Regime": "Tempo Integral",
+      "Banco": "BCI",
+      "Conta": "6789012345",
+      "Data": "2019-04-10"
+    },
+    {
+      "IdFuncionario": "FUN007",
+      "Nome": "Rui Miguel Mabjaia",
+      "Sexo": "M",
+      "DataN": "1986-08-19",
+      "BI": "110700890123G",
+      "Emissao": "2010-04-05",
+      "NIF": "723456789",
+      "Movel": "+258 84 777 8899",
+      "Email": "r.mabjaia@escola.mz",
+      "Nivel": "Licenciatura",
+      "Especialidade": "Contabilidade",
+      "Categoria": "Contabilista",
+      "Regime": "Efectivo",
+      "Banco": "BCI",
+      "Conta": "7890123456",
+      "Data": "2014-08-15"
+    }
+  ],
+  "funcoes": [
+    {
+      "IdFuncao": 1,
+      "Funcao": "Professor de Informática",
+      "Inicio": "2015-02-01",
+      "Fim": "",
+      "Motivo": "",
+      "CodFuncionario": "FUN001",
+      "CodEscola": "ESC001"
+    },
+    {
+      "IdFuncao": 2,
+      "Funcao": "Director da Escola",
+      "Inicio": "2010-06-01",
+      "Fim": "",
+      "Motivo": "",
+      "CodFuncionario": "FUN005",
+      "CodEscola": "ESC001"
+    }
+  ],
+  "alunos": [
+    {
+      "IdAluno": "ALU0001",
+      "Nome": "António João Muianga",
+      "DataNa": "2000-01-10",
+      "Sexo": "M",
+      "Natural": "Maputo",
+      "Sector": "Urbano",
+      "Regiao": "Sul",
+      "Morada": "Bairro 1, Rua 3, Casa nº 20",
+      "DocTipo": "BI",
+      "DocN": "11010100000A",
+      "DocEmissao": "2018-01-15",
+      "Pai": "Sr. António (pai)",
+      "PaiProfissao": "Funcionário Público",
+      "Mae": "Sra. João (mãe)",
+      "MaeProfissao": "Comerciante",
+      "Encarregado": "Sr(a). António Muianga",
+      "Parentesco": "Pai",
+      "Movel1": "+258 84 100 2000",
+      "Movel2": "",
+      "EscolaAnterior": "Escola Primária nº 1",
+      "Deficiencia": "Nenhuma",
+      "Anexos": "Bilhete",
+      "Estado": "Activo"
+    },
+    {
+      "IdAluno": "ALU0002",
+      "Nome": "Beatriz da Conceição Lopes",
+      "DataNa": "2001-02-11",
+      "Sexo": "F",
+      "Natural": "Maputo",
+      "Sector": "Urbano",
+      "Regiao": "Sul",
+      "Morada": "Bairro 2, Rua 4, Casa nº 21",
+      "DocTipo": "BI",
+      "DocN": "11010100001A",
+      "DocEmissao": "2018-02-15",
+      "Pai": "Sr. Beatriz (pai)",
+      "PaiProfissao": "Funcionário Público",
+      "Mae": "Sra. da (mãe)",
+      "MaeProfissao": "Comerciante",
+      "Encarregado": "Sr(a). Beatriz Lopes",
+      "Parentesco": "Mãe",
+      "Movel1": "+258 84 101 2001",
+      "Movel2": "",
+      "EscolaAnterior": "Escola Primária nº 2",
+      "Deficiencia": "Nenhuma",
+      "Anexos": "Certificado",
+      "Estado": "Activo"
+    },
+    {
+      "IdAluno": "ALU0003",
+      "Nome": "Célio Mário Nhaca",
+      "DataNa": "2002-03-12",
+      "Sexo": "M",
+      "Natural": "Maputo",
+      "Sector": "Urbano",
+      "Regiao": "Sul",
+      "Morada": "Bairro 3, Rua 5, Casa nº 22",
+      "DocTipo": "BI",
+      "DocN": "11010100002A",
+      "DocEmissao": "2018-03-15",
+      "Pai": "Sr. Célio (pai)",
+      "PaiProfissao": "Funcionário Público",
+      "Mae": "Sra. Mário (mãe)",
+      "MaeProfissao": "Comerciante",
+      "Encarregado": "Sr(a). Célio Nhaca",
+      "Parentesco": "Tutor",
+      "Movel1": "+258 84 102 2002",
+      "Movel2": "",
+      "EscolaAnterior": "Escola Primária nº 3",
+      "Deficiencia": "Nenhuma",
+      "Anexos": "Bilhete",
+      "Estado": "Activo"
+    },
+    {
+      "IdAluno": "ALU0004",
+      "Nome": "Domingas Felicidade Tembe",
+      "DataNa": "2003-04-13",
+      "Sexo": "F",
+      "Natural": "Maputo",
+      "Sector": "Urbano",
+      "Regiao": "Sul",
+      "Morada": "Bairro 4, Rua 6, Casa nº 23",
+      "DocTipo": "BI",
+      "DocN": "11010100003A",
+      "DocEmissao": "2018-04-15",
+      "Pai": "Sr. Domingas (pai)",
+      "PaiProfissao": "Funcionário Público",
+      "Mae": "Sra. Felicidade (mãe)",
+      "MaeProfissao": "Comerciante",
+      "Encarregado": "Sr(a). Domingas Tembe",
+      "Parentesco": "Pai",
+      "Movel1": "+258 84 103 2003",
+      "Movel2": "",
+      "EscolaAnterior": "Escola Primária nº 4",
+      "Deficiencia": "Nenhuma",
+      "Anexos": "Certificado",
+      "Estado": "Activo"
+    },
+    {
+      "IdAluno": "ALU0005",
+      "Nome": "Eduardo Filipe Massango",
+      "DataNa": "2004-05-14",
+      "Sexo": "M",
+      "Natural": "Maputo",
+      "Sector": "Urbano",
+      "Regiao": "Sul",
+      "Morada": "Bairro 5, Rua 7, Casa nº 24",
+      "DocTipo": "BI",
+      "DocN": "11010100004A",
+      "DocEmissao": "2018-05-15",
+      "Pai": "Sr. Eduardo (pai)",
+      "PaiProfissao": "Funcionário Público",
+      "Mae": "Sra. Filipe (mãe)",
+      "MaeProfissao": "Comerciante",
+      "Encarregado": "Sr(a). Eduardo Massango",
+      "Parentesco": "Mãe",
+      "Movel1": "+258 84 104 2004",
+      "Movel2": "",
+      "EscolaAnterior": "Escola Primária nº 5",
+      "Deficiencia": "Nenhuma",
+      "Anexos": "Bilhete",
+      "Estado": "Activo"
+    },
+    {
+      "IdAluno": "ALU0006",
+      "Nome": "Fátima Amélia Bila",
+      "DataNa": "2005-06-15",
+      "Sexo": "F",
+      "Natural": "Maputo",
+      "Sector": "Urbano",
+      "Regiao": "Sul",
+      "Morada": "Bairro 1, Rua 8, Casa nº 25",
+      "DocTipo": "BI",
+      "DocN": "11010100005A",
+      "DocEmissao": "2018-06-15",
+      "Pai": "Sr. Fátima (pai)",
+      "PaiProfissao": "Funcionário Público",
+      "Mae": "Sra. Amélia (mãe)",
+      "MaeProfissao": "Comerciante",
+      "Encarregado": "Sr(a). Fátima Bila",
+      "Parentesco": "Tutor",
+      "Movel1": "+258 84 105 2005",
+      "Movel2": "",
+      "EscolaAnterior": "Escola Primária nº 6",
+      "Deficiencia": "Nenhuma",
+      "Anexos": "Certificado",
+      "Estado": "Activo"
+    },
+    {
+      "IdAluno": "ALU0007",
+      "Nome": "Gerson Paulo Mabjaia",
+      "DataNa": "2006-07-16",
+      "Sexo": "M",
+      "Natural": "Maputo",
+      "Sector": "Urbano",
+      "Regiao": "Sul",
+      "Morada": "Bairro 2, Rua 9, Casa nº 26",
+      "DocTipo": "BI",
+      "DocN": "11010100006A",
+      "DocEmissao": "2018-07-15",
+      "Pai": "Sr. Gerson (pai)",
+      "PaiProfissao": "Funcionário Público",
+      "Mae": "Sra. Paulo (mãe)",
+      "MaeProfissao": "Comerciante",
+      "Encarregado": "Sr(a). Gerson Mabjaia",
+      "Parentesco": "Pai",
+      "Movel1": "+258 84 106 2006",
+      "Movel2": "",
+      "EscolaAnterior": "Escola Primária nº 7",
+      "Deficiencia": "Nenhuma",
+      "Anexos": "Bilhete",
+      "Estado": "Activo"
+    },
+    {
+      "IdAluno": "ALU0008",
+      "Nome": "Helena Sofia Matola",
+      "DataNa": "2007-08-17",
+      "Sexo": "F",
+      "Natural": "Maputo",
+      "Sector": "Urbano",
+      "Regiao": "Sul",
+      "Morada": "Bairro 3, Rua 10, Casa nº 27",
+      "DocTipo": "BI",
+      "DocN": "11010100007A",
+      "DocEmissao": "2018-08-15",
+      "Pai": "Sr. Helena (pai)",
+      "PaiProfissao": "Funcionário Público",
+      "Mae": "Sra. Sofia (mãe)",
+      "MaeProfissao": "Comerciante",
+      "Encarregado": "Sr(a). Helena Matola",
+      "Parentesco": "Mãe",
+      "Movel1": "+258 84 107 2007",
+      "Movel2": "",
+      "EscolaAnterior": "Escola Primária nº 8",
+      "Deficiencia": "Nenhuma",
+      "Anexos": "Certificado",
+      "Estado": "Activo"
+    },
+    {
+      "IdAluno": "ALU0009",
+      "Nome": "Ivan Carlos Guambe",
+      "DataNa": "2000-09-18",
+      "Sexo": "M",
+      "Natural": "Maputo",
+      "Sector": "Urbano",
+      "Regiao": "Sul",
+      "Morada": "Bairro 4, Rua 11, Casa nº 28",
+      "DocTipo": "BI",
+      "DocN": "11010100008A",
+      "DocEmissao": "2018-09-15",
+      "Pai": "Sr. Ivan (pai)",
+      "PaiProfissao": "Funcionário Público",
+      "Mae": "Sra. Carlos (mãe)",
+      "MaeProfissao": "Comerciante",
+      "Encarregado": "Sr(a). Ivan Guambe",
+      "Parentesco": "Tutor",
+      "Movel1": "+258 84 108 2008",
+      "Movel2": "",
+      "EscolaAnterior": "Escola Primária nº 9",
+      "Deficiencia": "Nenhuma",
+      "Anexos": "Bilhete",
+      "Estado": "Activo"
+    },
+    {
+      "IdAluno": "ALU0010",
+      "Nome": "Joana Rita Sitoe",
+      "DataNa": "2001-01-10",
+      "Sexo": "F",
+      "Natural": "Maputo",
+      "Sector": "Urbano",
+      "Regiao": "Sul",
+      "Morada": "Bairro 5, Rua 12, Casa nº 29",
+      "DocTipo": "BI",
+      "DocN": "11010100009A",
+      "DocEmissao": "2018-01-15",
+      "Pai": "Sr. Joana (pai)",
+      "PaiProfissao": "Funcionário Público",
+      "Mae": "Sra. Rita (mãe)",
+      "MaeProfissao": "Comerciante",
+      "Encarregado": "Sr(a). Joana Sitoe",
+      "Parentesco": "Pai",
+      "Movel1": "+258 84 109 2009",
+      "Movel2": "",
+      "EscolaAnterior": "Escola Primária nº 10",
+      "Deficiencia": "Nenhuma",
+      "Anexos": "Certificado",
+      "Estado": "Activo"
+    },
+    {
+      "IdAluno": "ALU0011",
+      "Nome": "Kelvin Samuel Chirindza",
+      "DataNa": "2002-02-11",
+      "Sexo": "M",
+      "Natural": "Maputo",
+      "Sector": "Urbano",
+      "Regiao": "Sul",
+      "Morada": "Bairro 1, Rua 13, Casa nº 30",
+      "DocTipo": "BI",
+      "DocN": "11010100010A",
+      "DocEmissao": "2018-02-15",
+      "Pai": "Sr. Kelvin (pai)",
+      "PaiProfissao": "Funcionário Público",
+      "Mae": "Sra. Samuel (mãe)",
+      "MaeProfissao": "Comerciante",
+      "Encarregado": "Sr(a). Kelvin Chirindza",
+      "Parentesco": "Mãe",
+      "Movel1": "+258 84 110 2010",
+      "Movel2": "",
+      "EscolaAnterior": "Escola Primária nº 11",
+      "Deficiencia": "Nenhuma",
+      "Anexos": "Bilhete",
+      "Estado": "Activo"
+    },
+    {
+      "IdAluno": "ALU0012",
+      "Nome": "Lúcia Maria Nguenha",
+      "DataNa": "2003-03-12",
+      "Sexo": "F",
+      "Natural": "Maputo",
+      "Sector": "Urbano",
+      "Regiao": "Sul",
+      "Morada": "Bairro 2, Rua 14, Casa nº 31",
+      "DocTipo": "BI",
+      "DocN": "11010100011A",
+      "DocEmissao": "2018-03-15",
+      "Pai": "Sr. Lúcia (pai)",
+      "PaiProfissao": "Funcionário Público",
+      "Mae": "Sra. Maria (mãe)",
+      "MaeProfissao": "Comerciante",
+      "Encarregado": "Sr(a). Lúcia Nguenha",
+      "Parentesco": "Tutor",
+      "Movel1": "+258 84 111 2011",
+      "Movel2": "",
+      "EscolaAnterior": "Escola Primária nº 12",
+      "Deficiencia": "Nenhuma",
+      "Anexos": "Certificado",
+      "Estado": "Activo"
+    },
+    {
+      "IdAluno": "ALU0013",
+      "Nome": "Manuel Jorge Bila",
+      "DataNa": "2004-04-13",
+      "Sexo": "M",
+      "Natural": "Maputo",
+      "Sector": "Urbano",
+      "Regiao": "Sul",
+      "Morada": "Bairro 3, Rua 15, Casa nº 32",
+      "DocTipo": "BI",
+      "DocN": "11010100012A",
+      "DocEmissao": "2018-04-15",
+      "Pai": "Sr. Manuel (pai)",
+      "PaiProfissao": "Funcionário Público",
+      "Mae": "Sra. Jorge (mãe)",
+      "MaeProfissao": "Comerciante",
+      "Encarregado": "Sr(a). Manuel Bila",
+      "Parentesco": "Pai",
+      "Movel1": "+258 84 112 2012",
+      "Movel2": "",
+      "EscolaAnterior": "Escola Primária nº 13",
+      "Deficiencia": "Nenhuma",
+      "Anexos": "Bilhete",
+      "Estado": "Activo"
+    },
+    {
+      "IdAluno": "ALU0014",
+      "Nome": "Nélia Célia Mondlane",
+      "DataNa": "2005-05-14",
+      "Sexo": "F",
+      "Natural": "Maputo",
+      "Sector": "Urbano",
+      "Regiao": "Sul",
+      "Morada": "Bairro 4, Rua 16, Casa nº 33",
+      "DocTipo": "BI",
+      "DocN": "11010100013A",
+      "DocEmissao": "2018-05-15",
+      "Pai": "Sr. Nélia (pai)",
+      "PaiProfissao": "Funcionário Público",
+      "Mae": "Sra. Célia (mãe)",
+      "MaeProfissao": "Comerciante",
+      "Encarregado": "Sr(a). Nélia Mondlane",
+      "Parentesco": "Mãe",
+      "Movel1": "+258 84 113 2013",
+      "Movel2": "",
+      "EscolaAnterior": "Escola Primária nº 14",
+      "Deficiencia": "Nenhuma",
+      "Anexos": "Certificado",
+      "Estado": "Activo"
+    },
+    {
+      "IdAluno": "ALU0015",
+      "Nome": "Olímpio Bernardo Cuna",
+      "DataNa": "2006-06-15",
+      "Sexo": "M",
+      "Natural": "Maputo",
+      "Sector": "Urbano",
+      "Regiao": "Sul",
+      "Morada": "Bairro 5, Rua 17, Casa nº 34",
+      "DocTipo": "BI",
+      "DocN": "11010100014A",
+      "DocEmissao": "2018-06-15",
+      "Pai": "Sr. Olímpio (pai)",
+      "PaiProfissao": "Funcionário Público",
+      "Mae": "Sra. Bernardo (mãe)",
+      "MaeProfissao": "Comerciante",
+      "Encarregado": "Sr(a). Olímpio Cuna",
+      "Parentesco": "Tutor",
+      "Movel1": "+258 84 114 2014",
+      "Movel2": "",
+      "EscolaAnterior": "Escola Primária nº 15",
+      "Deficiencia": "Nenhuma",
+      "Anexos": "Bilhete",
+      "Estado": "Activo"
+    },
+    {
+      "IdAluno": "ALU0016",
+      "Nome": "Patrícia Ana Muianga",
+      "DataNa": "2007-07-16",
+      "Sexo": "F",
+      "Natural": "Maputo",
+      "Sector": "Urbano",
+      "Regiao": "Sul",
+      "Morada": "Bairro 1, Rua 18, Casa nº 35",
+      "DocTipo": "BI",
+      "DocN": "11010100015A",
+      "DocEmissao": "2018-07-15",
+      "Pai": "Sr. Patrícia (pai)",
+      "PaiProfissao": "Funcionário Público",
+      "Mae": "Sra. Ana (mãe)",
+      "MaeProfissao": "Comerciante",
+      "Encarregado": "Sr(a). Patrícia Muianga",
+      "Parentesco": "Pai",
+      "Movel1": "+258 84 115 2015",
+      "Movel2": "",
+      "EscolaAnterior": "Escola Primária nº 16",
+      "Deficiencia": "Nenhuma",
+      "Anexos": "Certificado",
+      "Estado": "Activo"
+    },
+    {
+      "IdAluno": "ALU0017",
+      "Nome": "Quitéria Rosalina Nhantumbo",
+      "DataNa": "2000-08-17",
+      "Sexo": "M",
+      "Natural": "Maputo",
+      "Sector": "Urbano",
+      "Regiao": "Sul",
+      "Morada": "Bairro 2, Rua 19, Casa nº 36",
+      "DocTipo": "BI",
+      "DocN": "11010100016A",
+      "DocEmissao": "2018-08-15",
+      "Pai": "Sr. Quitéria (pai)",
+      "PaiProfissao": "Funcionário Público",
+      "Mae": "Sra. Rosalina (mãe)",
+      "MaeProfissao": "Comerciante",
+      "Encarregado": "Sr(a). Quitéria Nhantumbo",
+      "Parentesco": "Mãe",
+      "Movel1": "+258 84 116 2016",
+      "Movel2": "",
+      "EscolaAnterior": "Escola Primária nº 17",
+      "Deficiencia": "Nenhuma",
+      "Anexos": "Bilhete",
+      "Estado": "Activo"
+    },
+    {
+      "IdAluno": "ALU0018",
+      "Nome": "Rogério Samuel Tembe",
+      "DataNa": "2001-09-18",
+      "Sexo": "F",
+      "Natural": "Maputo",
+      "Sector": "Urbano",
+      "Regiao": "Sul",
+      "Morada": "Bairro 3, Rua 20, Casa nº 37",
+      "DocTipo": "BI",
+      "DocN": "11010100017A",
+      "DocEmissao": "2018-09-15",
+      "Pai": "Sr. Rogério (pai)",
+      "PaiProfissao": "Funcionário Público",
+      "Mae": "Sra. Samuel (mãe)",
+      "MaeProfissao": "Comerciante",
+      "Encarregado": "Sr(a). Rogério Tembe",
+      "Parentesco": "Tutor",
+      "Movel1": "+258 84 117 2017",
+      "Movel2": "",
+      "EscolaAnterior": "Escola Primária nº 18",
+      "Deficiencia": "Nenhuma",
+      "Anexos": "Certificado",
+      "Estado": "Activo"
+    },
+    {
+      "IdAluno": "ALU0019",
+      "Nome": "Sónia Isabel Massango",
+      "DataNa": "2002-01-10",
+      "Sexo": "M",
+      "Natural": "Maputo",
+      "Sector": "Urbano",
+      "Regiao": "Sul",
+      "Morada": "Bairro 4, Rua 21, Casa nº 38",
+      "DocTipo": "BI",
+      "DocN": "11010100018A",
+      "DocEmissao": "2018-01-15",
+      "Pai": "Sr. Sónia (pai)",
+      "PaiProfissao": "Funcionário Público",
+      "Mae": "Sra. Isabel (mãe)",
+      "MaeProfissao": "Comerciante",
+      "Encarregado": "Sr(a). Sónia Massango",
+      "Parentesco": "Pai",
+      "Movel1": "+258 84 118 2018",
+      "Movel2": "",
+      "EscolaAnterior": "Escola Primária nº 19",
+      "Deficiencia": "Nenhuma",
+      "Anexos": "Bilhete",
+      "Estado": "Activo"
+    },
+    {
+      "IdAluno": "ALU0020",
+      "Nome": "Tomás Filipe Guambe",
+      "DataNa": "2003-02-11",
+      "Sexo": "F",
+      "Natural": "Maputo",
+      "Sector": "Urbano",
+      "Regiao": "Sul",
+      "Morada": "Bairro 5, Rua 22, Casa nº 39",
+      "DocTipo": "BI",
+      "DocN": "11010100019A",
+      "DocEmissao": "2018-02-15",
+      "Pai": "Sr. Tomás (pai)",
+      "PaiProfissao": "Funcionário Público",
+      "Mae": "Sra. Filipe (mãe)",
+      "MaeProfissao": "Comerciante",
+      "Encarregado": "Sr(a). Tomás Guambe",
+      "Parentesco": "Mãe",
+      "Movel1": "+258 84 119 2019",
+      "Movel2": "",
+      "EscolaAnterior": "Escola Primária nº 20",
+      "Deficiencia": "Nenhuma",
+      "Anexos": "Certificado",
+      "Estado": "Activo"
+    }
+  ],
+  "inscricoes": [
+    {
+      "IdInscricao": 1,
+      "CodAluno": "ALU0001",
+      "Ano": "2026/2027",
+      "Classe": "10ª Classe",
+      "IdClasse": 3,
+      "Turma": "T001",
+      "CodTurma": "T001",
+      "Curso": "CUR001",
+      "CodCurso": "CUR001",
+      "Turno": "Manhã",
+      "Opcao": "2ª Opção",
+      "Valor": 500,
+      "Data": "2026-01-10",
+      "Estado": "Matriculado",
+      "Tipo": "Matrícula",
+      "NumMatricula": "M202620270001",
+      "Observacao": ""
+    },
+    {
+      "IdInscricao": 2,
+      "CodAluno": "ALU0002",
+      "Ano": "2026/2027",
+      "Classe": "10ª Classe",
+      "IdClasse": 3,
+      "Turma": "T002",
+      "CodTurma": "T002",
+      "Curso": "CUR002",
+      "CodCurso": "CUR002",
+      "Turno": "Tarde",
+      "Opcao": "1ª Opção",
+      "Valor": 500,
+      "Data": "2026-01-11",
+      "Estado": "Matriculado",
+      "Tipo": "Matrícula",
+      "NumMatricula": "M202620270002",
+      "Observacao": ""
+    },
+    {
+      "IdInscricao": 3,
+      "CodAluno": "ALU0003",
+      "Ano": "2026/2027",
+      "Classe": "11ª Classe",
+      "IdClasse": 4,
+      "Turma": "T003",
+      "CodTurma": "T003",
+      "Curso": "CUR001",
+      "CodCurso": "CUR001",
+      "Turno": "Manhã",
+      "Opcao": "2ª Opção",
+      "Valor": 550,
+      "Data": "2026-01-12",
+      "Estado": "Matriculado",
+      "Tipo": "Matrícula",
+      "NumMatricula": "M202620270003",
+      "Observacao": ""
+    },
+    {
+      "IdInscricao": 4,
+      "CodAluno": "ALU0004",
+      "Ano": "2026/2027",
+      "Classe": "12ª Classe",
+      "IdClasse": 5,
+      "Turma": "T004",
+      "CodTurma": "T004",
+      "Curso": "CUR003",
+      "CodCurso": "CUR003",
+      "Turno": "Noite",
+      "Opcao": "1ª Opção",
+      "Valor": 600,
+      "Data": "2026-01-13",
+      "Estado": "Matriculado",
+      "Tipo": "Matrícula",
+      "NumMatricula": "M202620270004",
+      "Observacao": ""
+    },
+    {
+      "IdInscricao": 5,
+      "CodAluno": "ALU0005",
+      "Ano": "2026/2027",
+      "Classe": "10ª Classe",
+      "IdClasse": 3,
+      "Turma": "T005",
+      "CodTurma": "T005",
+      "Curso": "CUR005",
+      "CodCurso": "CUR005",
+      "Turno": "Manhã",
+      "Opcao": "2ª Opção",
+      "Valor": 500,
+      "Data": "2026-01-14",
+      "Estado": "Matriculado",
+      "Tipo": "Matrícula",
+      "NumMatricula": "M202620270005",
+      "Observacao": ""
+    },
+    {
+      "IdInscricao": 6,
+      "CodAluno": "ALU0006",
+      "Ano": "2026/2027",
+      "Classe": "10ª Classe",
+      "IdClasse": 3,
+      "Turma": "T001",
+      "CodTurma": "T001",
+      "Curso": "CUR001",
+      "CodCurso": "CUR001",
+      "Turno": "Manhã",
+      "Opcao": "1ª Opção",
+      "Valor": 500,
+      "Data": "2026-01-15",
+      "Estado": "Matriculado",
+      "Tipo": "Matrícula",
+      "NumMatricula": "M202620270006",
+      "Observacao": ""
+    },
+    {
+      "IdInscricao": 7,
+      "CodAluno": "ALU0007",
+      "Ano": "2026/2027",
+      "Classe": "10ª Classe",
+      "IdClasse": 3,
+      "Turma": "T002",
+      "CodTurma": "T002",
+      "Curso": "CUR002",
+      "CodCurso": "CUR002",
+      "Turno": "Tarde",
+      "Opcao": "2ª Opção",
+      "Valor": 500,
+      "Data": "2026-01-16",
+      "Estado": "Matriculado",
+      "Tipo": "Matrícula",
+      "NumMatricula": "M202620270007",
+      "Observacao": ""
+    },
+    {
+      "IdInscricao": 8,
+      "CodAluno": "ALU0008",
+      "Ano": "2026/2027",
+      "Classe": "11ª Classe",
+      "IdClasse": 4,
+      "Turma": "T003",
+      "CodTurma": "T003",
+      "Curso": "CUR001",
+      "CodCurso": "CUR001",
+      "Turno": "Manhã",
+      "Opcao": "1ª Opção",
+      "Valor": 550,
+      "Data": "2026-01-17",
+      "Estado": "Matriculado",
+      "Tipo": "Matrícula",
+      "NumMatricula": "M202620270008",
+      "Observacao": ""
+    },
+    {
+      "IdInscricao": 9,
+      "CodAluno": "ALU0009",
+      "Ano": "2026/2027",
+      "Classe": "12ª Classe",
+      "IdClasse": 5,
+      "Turma": "T004",
+      "CodTurma": "T004",
+      "Curso": "CUR003",
+      "CodCurso": "CUR003",
+      "Turno": "Noite",
+      "Opcao": "2ª Opção",
+      "Valor": 600,
+      "Data": "2026-01-18",
+      "Estado": "Matriculado",
+      "Tipo": "Matrícula",
+      "NumMatricula": "M202620270009",
+      "Observacao": ""
+    },
+    {
+      "IdInscricao": 10,
+      "CodAluno": "ALU0010",
+      "Ano": "2026/2027",
+      "Classe": "10ª Classe",
+      "IdClasse": 3,
+      "Turma": "T005",
+      "CodTurma": "T005",
+      "Curso": "CUR005",
+      "CodCurso": "CUR005",
+      "Turno": "Manhã",
+      "Opcao": "1ª Opção",
+      "Valor": 500,
+      "Data": "2026-01-10",
+      "Estado": "Matriculado",
+      "Tipo": "Matrícula",
+      "NumMatricula": "M202620270010",
+      "Observacao": ""
+    },
+    {
+      "IdInscricao": 11,
+      "CodAluno": "ALU0011",
+      "Ano": "2026/2027",
+      "Classe": "10ª Classe",
+      "IdClasse": 3,
+      "Turma": "T001",
+      "CodTurma": "T001",
+      "Curso": "CUR001",
+      "CodCurso": "CUR001",
+      "Turno": "Manhã",
+      "Opcao": "2ª Opção",
+      "Valor": 500,
+      "Data": "2026-01-11",
+      "Estado": "Matriculado",
+      "Tipo": "Matrícula",
+      "NumMatricula": "M202620270011",
+      "Observacao": ""
+    },
+    {
+      "IdInscricao": 12,
+      "CodAluno": "ALU0012",
+      "Ano": "2026/2027",
+      "Classe": "10ª Classe",
+      "IdClasse": 3,
+      "Turma": "T002",
+      "CodTurma": "T002",
+      "Curso": "CUR002",
+      "CodCurso": "CUR002",
+      "Turno": "Tarde",
+      "Opcao": "1ª Opção",
+      "Valor": 500,
+      "Data": "2026-01-12",
+      "Estado": "Matriculado",
+      "Tipo": "Matrícula",
+      "NumMatricula": "M202620270012",
+      "Observacao": ""
+    },
+    {
+      "IdInscricao": 13,
+      "CodAluno": "ALU0013",
+      "Ano": "2026/2027",
+      "Classe": "11ª Classe",
+      "IdClasse": 4,
+      "Turma": "T003",
+      "CodTurma": "T003",
+      "Curso": "CUR001",
+      "CodCurso": "CUR001",
+      "Turno": "Manhã",
+      "Opcao": "2ª Opção",
+      "Valor": 550,
+      "Data": "2026-01-13",
+      "Estado": "Matriculado",
+      "Tipo": "Matrícula",
+      "NumMatricula": "M202620270013",
+      "Observacao": ""
+    },
+    {
+      "IdInscricao": 14,
+      "CodAluno": "ALU0014",
+      "Ano": "2026/2027",
+      "Classe": "12ª Classe",
+      "IdClasse": 5,
+      "Turma": "T004",
+      "CodTurma": "T004",
+      "Curso": "CUR003",
+      "CodCurso": "CUR003",
+      "Turno": "Noite",
+      "Opcao": "1ª Opção",
+      "Valor": 600,
+      "Data": "2026-01-14",
+      "Estado": "Matriculado",
+      "Tipo": "Matrícula",
+      "NumMatricula": "M202620270014",
+      "Observacao": ""
+    },
+    {
+      "IdInscricao": 15,
+      "CodAluno": "ALU0015",
+      "Ano": "2026/2027",
+      "Classe": "10ª Classe",
+      "IdClasse": 3,
+      "Turma": "T005",
+      "CodTurma": "T005",
+      "Curso": "CUR005",
+      "CodCurso": "CUR005",
+      "Turno": "Manhã",
+      "Opcao": "2ª Opção",
+      "Valor": 500,
+      "Data": "2026-01-15",
+      "Estado": "Matriculado",
+      "Tipo": "Matrícula",
+      "NumMatricula": "M202620270015",
+      "Observacao": ""
+    },
+    {
+      "IdInscricao": 16,
+      "CodAluno": "ALU0016",
+      "Ano": "2026/2027",
+      "Classe": "10ª Classe",
+      "IdClasse": 3,
+      "Turma": "T001",
+      "CodTurma": "T001",
+      "Curso": "CUR001",
+      "CodCurso": "CUR001",
+      "Turno": "Manhã",
+      "Opcao": "1ª Opção",
+      "Valor": 500,
+      "Data": "2026-01-16",
+      "Estado": "Matriculado",
+      "Tipo": "Matrícula",
+      "NumMatricula": "M202620270016",
+      "Observacao": ""
+    },
+    {
+      "IdInscricao": 17,
+      "CodAluno": "ALU0017",
+      "Ano": "2026/2027",
+      "Classe": "10ª Classe",
+      "IdClasse": 3,
+      "Turma": "T002",
+      "CodTurma": "T002",
+      "Curso": "CUR002",
+      "CodCurso": "CUR002",
+      "Turno": "Tarde",
+      "Opcao": "2ª Opção",
+      "Valor": 500,
+      "Data": "2026-01-17",
+      "Estado": "Matriculado",
+      "Tipo": "Matrícula",
+      "NumMatricula": "M202620270017",
+      "Observacao": ""
+    },
+    {
+      "IdInscricao": 18,
+      "CodAluno": "ALU0018",
+      "Ano": "2026/2027",
+      "Classe": "11ª Classe",
+      "IdClasse": 4,
+      "Turma": "T003",
+      "CodTurma": "T003",
+      "Curso": "CUR001",
+      "CodCurso": "CUR001",
+      "Turno": "Manhã",
+      "Opcao": "1ª Opção",
+      "Valor": 550,
+      "Data": "2026-01-18",
+      "Estado": "Matriculado",
+      "Tipo": "Matrícula",
+      "NumMatricula": "M202620270018",
+      "Observacao": ""
+    },
+    {
+      "IdInscricao": 19,
+      "CodAluno": "ALU0019",
+      "Ano": "2026/2027",
+      "Classe": "12ª Classe",
+      "IdClasse": 5,
+      "Turma": "T004",
+      "CodTurma": "T004",
+      "Curso": "CUR003",
+      "CodCurso": "CUR003",
+      "Turno": "Noite",
+      "Opcao": "2ª Opção",
+      "Valor": 600,
+      "Data": "2026-01-10",
+      "Estado": "Matriculado",
+      "Tipo": "Matrícula",
+      "NumMatricula": "M202620270019",
+      "Observacao": ""
+    },
+    {
+      "IdInscricao": 20,
+      "CodAluno": "ALU0020",
+      "Ano": "2026/2027",
+      "Classe": "10ª Classe",
+      "IdClasse": 3,
+      "Turma": "T005",
+      "CodTurma": "T005",
+      "Curso": "CUR005",
+      "CodCurso": "CUR005",
+      "Turno": "Manhã",
+      "Opcao": "1ª Opção",
+      "Valor": 500,
+      "Data": "2026-01-11",
+      "Estado": "Matriculado",
+      "Tipo": "Matrícula",
+      "NumMatricula": "M202620270020",
+      "Observacao": ""
+    }
+  ],
+  "atribuicoes": [
+    {
+      "IdAtribuicao": 1,
+      "CodFuncionario": "FUN001",
+      "CodTurma": "T001",
+      "IdMateria": 9,
+      "Ano": "2026/2027",
+      "Locked": false
+    },
+    {
+      "IdAtribuicao": 2,
+      "CodFuncionario": "FUN001",
+      "CodTurma": "T001",
+      "IdMateria": 12,
+      "Ano": "2026/2027",
+      "Locked": false
+    },
+    {
+      "IdAtribuicao": 3,
+      "CodFuncionario": "FUN001",
+      "CodTurma": "T003",
+      "IdMateria": 9,
+      "Ano": "2026/2027",
+      "Locked": false
+    },
+    {
+      "IdAtribuicao": 4,
+      "CodFuncionario": "FUN002",
+      "CodTurma": "T002",
+      "IdMateria": 2,
+      "Ano": "2026/2027",
+      "Locked": false
+    },
+    {
+      "IdAtribuicao": 5,
+      "CodFuncionario": "FUN002",
+      "CodTurma": "T005",
+      "IdMateria": 1,
+      "Ano": "2026/2027",
+      "Locked": false
+    },
+    {
+      "IdAtribuicao": 6,
+      "CodFuncionario": "FUN003",
+      "CodTurma": "T004",
+      "IdMateria": 7,
+      "Ano": "2026/2027",
+      "Locked": false
+    },
+    {
+      "IdAtribuicao": 7,
+      "CodFuncionario": "FUN004",
+      "CodTurma": "T002",
+      "IdMateria": 11,
+      "Ano": "2026/2027",
+      "Locked": false
+    }
+  ],
+  "notas": [
+    {
+      "IdNota": 1,
+      "CodInscricao": 1,
+      "CodMateria": 1,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 8,
+        "NPP": 17,
+        "NPT": 18
+      },
+      "II_Trimestre": {
+        "MAC": 18,
+        "NPP": 15,
+        "NPT": 9
+      },
+      "III_Trimestre": {
+        "MAC": 16,
+        "NPP": 9,
+        "NPT": 9
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 2,
+      "CodInscricao": 1,
+      "CodMateria": 2,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 14,
+        "NPP": 10,
+        "NPT": 10
+      },
+      "II_Trimestre": {
+        "MAC": 16,
+        "NPP": 11,
+        "NPT": 18
+      },
+      "III_Trimestre": {
+        "MAC": 14,
+        "NPP": 17,
+        "NPT": 11
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 3,
+      "CodInscricao": 1,
+      "CodMateria": 9,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 10,
+        "NPP": 13,
+        "NPT": 12
+      },
+      "II_Trimestre": {
+        "MAC": 12,
+        "NPP": 16,
+        "NPT": 12
+      },
+      "III_Trimestre": {
+        "MAC": 11,
+        "NPP": 13,
+        "NPT": 12
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 4,
+      "CodInscricao": 2,
+      "CodMateria": 1,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 10,
+        "NPP": 12,
+        "NPT": 18
+      },
+      "II_Trimestre": {
+        "MAC": 15,
+        "NPP": 10,
+        "NPT": 15
+      },
+      "III_Trimestre": {
+        "MAC": 16,
+        "NPP": 10,
+        "NPT": 9
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 5,
+      "CodInscricao": 2,
+      "CodMateria": 2,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 12,
+        "NPP": 18,
+        "NPT": 15
+      },
+      "II_Trimestre": {
+        "MAC": 13,
+        "NPP": 9,
+        "NPT": 11
+      },
+      "III_Trimestre": {
+        "MAC": 16,
+        "NPP": 17,
+        "NPT": 9
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 6,
+      "CodInscricao": 2,
+      "CodMateria": 9,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 15,
+        "NPP": 12,
+        "NPT": 16
+      },
+      "II_Trimestre": {
+        "MAC": 8,
+        "NPP": 9,
+        "NPT": 11
+      },
+      "III_Trimestre": {
+        "MAC": 15,
+        "NPP": 16,
+        "NPT": 9
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 7,
+      "CodInscricao": 3,
+      "CodMateria": 1,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 11,
+        "NPP": 9,
+        "NPT": 8
+      },
+      "II_Trimestre": {
+        "MAC": 10,
+        "NPP": 15,
+        "NPT": 10
+      },
+      "III_Trimestre": {
+        "MAC": 13,
+        "NPP": 15,
+        "NPT": 9
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 8,
+      "CodInscricao": 3,
+      "CodMateria": 2,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 16,
+        "NPP": 13,
+        "NPT": 11
+      },
+      "II_Trimestre": {
+        "MAC": 17,
+        "NPP": 11,
+        "NPT": 8
+      },
+      "III_Trimestre": {
+        "MAC": 16,
+        "NPP": 13,
+        "NPT": 10
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 9,
+      "CodInscricao": 3,
+      "CodMateria": 9,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 10,
+        "NPP": 16,
+        "NPT": 14
+      },
+      "II_Trimestre": {
+        "MAC": 10,
+        "NPP": 16,
+        "NPT": 17
+      },
+      "III_Trimestre": {
+        "MAC": 9,
+        "NPP": 13,
+        "NPT": 14
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 10,
+      "CodInscricao": 4,
+      "CodMateria": 1,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 15,
+        "NPP": 14,
+        "NPT": 13
+      },
+      "II_Trimestre": {
+        "MAC": 9,
+        "NPP": 11,
+        "NPT": 10
+      },
+      "III_Trimestre": {
+        "MAC": 17,
+        "NPP": 18,
+        "NPT": 17
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 11,
+      "CodInscricao": 4,
+      "CodMateria": 2,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 14,
+        "NPP": 11,
+        "NPT": 18
+      },
+      "II_Trimestre": {
+        "MAC": 18,
+        "NPP": 17,
+        "NPT": 11
+      },
+      "III_Trimestre": {
+        "MAC": 10,
+        "NPP": 9,
+        "NPT": 18
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 12,
+      "CodInscricao": 4,
+      "CodMateria": 9,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 12,
+        "NPP": 17,
+        "NPT": 11
+      },
+      "II_Trimestre": {
+        "MAC": 14,
+        "NPP": 14,
+        "NPT": 15
+      },
+      "III_Trimestre": {
+        "MAC": 9,
+        "NPP": 15,
+        "NPT": 10
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 13,
+      "CodInscricao": 5,
+      "CodMateria": 1,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 16,
+        "NPP": 12,
+        "NPT": 11
+      },
+      "II_Trimestre": {
+        "MAC": 15,
+        "NPP": 13,
+        "NPT": 18
+      },
+      "III_Trimestre": {
+        "MAC": 9,
+        "NPP": 9,
+        "NPT": 18
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 14,
+      "CodInscricao": 5,
+      "CodMateria": 2,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 17,
+        "NPP": 12,
+        "NPT": 17
+      },
+      "II_Trimestre": {
+        "MAC": 12,
+        "NPP": 9,
+        "NPT": 9
+      },
+      "III_Trimestre": {
+        "MAC": 11,
+        "NPP": 18,
+        "NPT": 10
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 15,
+      "CodInscricao": 5,
+      "CodMateria": 9,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 15,
+        "NPP": 17,
+        "NPT": 15
+      },
+      "II_Trimestre": {
+        "MAC": 16,
+        "NPP": 17,
+        "NPT": 9
+      },
+      "III_Trimestre": {
+        "MAC": 14,
+        "NPP": 10,
+        "NPT": 11
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 16,
+      "CodInscricao": 6,
+      "CodMateria": 1,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 11,
+        "NPP": 13,
+        "NPT": 13
+      },
+      "II_Trimestre": {
+        "MAC": 15,
+        "NPP": 11,
+        "NPT": 17
+      },
+      "III_Trimestre": {
+        "MAC": 11,
+        "NPP": 14,
+        "NPT": 13
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 17,
+      "CodInscricao": 6,
+      "CodMateria": 2,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 12,
+        "NPP": 9,
+        "NPT": 10
+      },
+      "II_Trimestre": {
+        "MAC": 17,
+        "NPP": 11,
+        "NPT": 8
+      },
+      "III_Trimestre": {
+        "MAC": 9,
+        "NPP": 14,
+        "NPT": 15
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 18,
+      "CodInscricao": 6,
+      "CodMateria": 9,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 12,
+        "NPP": 16,
+        "NPT": 11
+      },
+      "II_Trimestre": {
+        "MAC": 15,
+        "NPP": 9,
+        "NPT": 8
+      },
+      "III_Trimestre": {
+        "MAC": 15,
+        "NPP": 9,
+        "NPT": 14
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 19,
+      "CodInscricao": 7,
+      "CodMateria": 1,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 12,
+        "NPP": 13,
+        "NPT": 8
+      },
+      "II_Trimestre": {
+        "MAC": 11,
+        "NPP": 16,
+        "NPT": 10
+      },
+      "III_Trimestre": {
+        "MAC": 8,
+        "NPP": 9,
+        "NPT": 17
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 20,
+      "CodInscricao": 7,
+      "CodMateria": 2,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 16,
+        "NPP": 12,
+        "NPT": 8
+      },
+      "II_Trimestre": {
+        "MAC": 14,
+        "NPP": 13,
+        "NPT": 11
+      },
+      "III_Trimestre": {
+        "MAC": 18,
+        "NPP": 18,
+        "NPT": 17
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 21,
+      "CodInscricao": 7,
+      "CodMateria": 9,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 18,
+        "NPP": 16,
+        "NPT": 18
+      },
+      "II_Trimestre": {
+        "MAC": 13,
+        "NPP": 9,
+        "NPT": 18
+      },
+      "III_Trimestre": {
+        "MAC": 9,
+        "NPP": 14,
+        "NPT": 10
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 22,
+      "CodInscricao": 8,
+      "CodMateria": 1,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 17,
+        "NPP": 12,
+        "NPT": 15
+      },
+      "II_Trimestre": {
+        "MAC": 10,
+        "NPP": 10,
+        "NPT": 18
+      },
+      "III_Trimestre": {
+        "MAC": 9,
+        "NPP": 10,
+        "NPT": 12
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 23,
+      "CodInscricao": 8,
+      "CodMateria": 2,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 10,
+        "NPP": 13,
+        "NPT": 13
+      },
+      "II_Trimestre": {
+        "MAC": 18,
+        "NPP": 13,
+        "NPT": 11
+      },
+      "III_Trimestre": {
+        "MAC": 13,
+        "NPP": 15,
+        "NPT": 17
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 24,
+      "CodInscricao": 8,
+      "CodMateria": 9,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 8,
+        "NPP": 17,
+        "NPT": 11
+      },
+      "II_Trimestre": {
+        "MAC": 11,
+        "NPP": 12,
+        "NPT": 11
+      },
+      "III_Trimestre": {
+        "MAC": 8,
+        "NPP": 9,
+        "NPT": 13
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 25,
+      "CodInscricao": 9,
+      "CodMateria": 1,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 14,
+        "NPP": 9,
+        "NPT": 12
+      },
+      "II_Trimestre": {
+        "MAC": 15,
+        "NPP": 16,
+        "NPT": 12
+      },
+      "III_Trimestre": {
+        "MAC": 9,
+        "NPP": 12,
+        "NPT": 12
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 26,
+      "CodInscricao": 9,
+      "CodMateria": 2,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 8,
+        "NPP": 15,
+        "NPT": 10
+      },
+      "II_Trimestre": {
+        "MAC": 12,
+        "NPP": 18,
+        "NPT": 8
+      },
+      "III_Trimestre": {
+        "MAC": 18,
+        "NPP": 9,
+        "NPT": 9
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 27,
+      "CodInscricao": 9,
+      "CodMateria": 9,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 15,
+        "NPP": 14,
+        "NPT": 18
+      },
+      "II_Trimestre": {
+        "MAC": 13,
+        "NPP": 15,
+        "NPT": 8
+      },
+      "III_Trimestre": {
+        "MAC": 14,
+        "NPP": 10,
+        "NPT": 11
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 28,
+      "CodInscricao": 10,
+      "CodMateria": 1,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 17,
+        "NPP": 13,
+        "NPT": 17
+      },
+      "II_Trimestre": {
+        "MAC": 18,
+        "NPP": 15,
+        "NPT": 11
+      },
+      "III_Trimestre": {
+        "MAC": 16,
+        "NPP": 8,
+        "NPT": 8
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 29,
+      "CodInscricao": 10,
+      "CodMateria": 2,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 14,
+        "NPP": 18,
+        "NPT": 16
+      },
+      "II_Trimestre": {
+        "MAC": 13,
+        "NPP": 10,
+        "NPT": 9
+      },
+      "III_Trimestre": {
+        "MAC": 14,
+        "NPP": 18,
+        "NPT": 10
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    },
+    {
+      "IdNota": 30,
+      "CodInscricao": 10,
+      "CodMateria": 9,
+      "Ano": "2026/2027",
+      "I_Trimestre": {
+        "MAC": 15,
+        "NPP": 13,
+        "NPT": 8
+      },
+      "II_Trimestre": {
+        "MAC": 10,
+        "NPP": 11,
+        "NPT": 18
+      },
+      "III_Trimestre": {
+        "MAC": 17,
+        "NPP": 18,
+        "NPT": 12
+      },
+      "ExameFinal": null,
+      "ExameRecurso": null,
+      "Locked": false,
+      "CodProfessor": "FUN001",
+      "DataLancamento": null
+    }
+  ],
+  "exames": [],
+  "recursos": [],
+  "pagamentos": [
+    {
+      "IdPagamento": 1,
+      "Talao": "TL202620271001",
+      "Referente": "Taxa de Inscrição",
+      "Valor": 500,
+      "Data": "2026-01-10",
+      "Mes": "Janeiro",
+      "FormaPagamento": "Numerário",
+      "CodAluno": "ALU0001",
+      "CodInscricao": 1,
+      "Operador": "FUN007"
+    },
+    {
+      "IdPagamento": 2,
+      "Talao": "TL202620272001",
+      "Referente": "Propina Mensal",
+      "Valor": 650,
+      "Data": "2026-02-10",
+      "Mes": "Fevereiro",
+      "FormaPagamento": "Transferência",
+      "CodAluno": "ALU0001",
+      "CodInscricao": 1,
+      "Operador": "FUN007"
+    },
+    {
+      "IdPagamento": 3,
+      "Talao": "TL202620272002",
+      "Referente": "Propina Mensal",
+      "Valor": 650,
+      "Data": "2026-03-10",
+      "Mes": "Março",
+      "FormaPagamento": "Transferência",
+      "CodAluno": "ALU0001",
+      "CodInscricao": 1,
+      "Operador": "FUN007"
+    },
+    {
+      "IdPagamento": 4,
+      "Talao": "TL202620272003",
+      "Referente": "Propina Mensal",
+      "Valor": 650,
+      "Data": "2026-04-10",
+      "Mes": "Abril",
+      "FormaPagamento": "Transferência",
+      "CodAluno": "ALU0001",
+      "CodInscricao": 1,
+      "Operador": "FUN007"
+    },
+    {
+      "IdPagamento": 5,
+      "Talao": "TL202620271002",
+      "Referente": "Taxa de Inscrição",
+      "Valor": 500,
+      "Data": "2026-01-11",
+      "Mes": "Janeiro",
+      "FormaPagamento": "Numerário",
+      "CodAluno": "ALU0002",
+      "CodInscricao": 2,
+      "Operador": "FUN007"
+    },
+    {
+      "IdPagamento": 6,
+      "Talao": "TL202620272005",
+      "Referente": "Propina Mensal",
+      "Valor": 650,
+      "Data": "2026-02-10",
+      "Mes": "Fevereiro",
+      "FormaPagamento": "Transferência",
+      "CodAluno": "ALU0002",
+      "CodInscricao": 2,
+      "Operador": "FUN007"
+    },
+    {
+      "IdPagamento": 7,
+      "Talao": "TL202620272006",
+      "Referente": "Propina Mensal",
+      "Valor": 650,
+      "Data": "2026-03-10",
+      "Mes": "Março",
+      "FormaPagamento": "Transferência",
+      "CodAluno": "ALU0002",
+      "CodInscricao": 2,
+      "Operador": "FUN007"
+    },
+    {
+      "IdPagamento": 8,
+      "Talao": "TL202620272007",
+      "Referente": "Propina Mensal",
+      "Valor": 650,
+      "Data": "2026-04-10",
+      "Mes": "Abril",
+      "FormaPagamento": "Transferência",
+      "CodAluno": "ALU0002",
+      "CodInscricao": 2,
+      "Operador": "FUN007"
+    },
+    {
+      "IdPagamento": 9,
+      "Talao": "TL202620271003",
+      "Referente": "Taxa de Inscrição",
+      "Valor": 550,
+      "Data": "2026-01-12",
+      "Mes": "Janeiro",
+      "FormaPagamento": "Numerário",
+      "CodAluno": "ALU0003",
+      "CodInscricao": 3,
+      "Operador": "FUN007"
+    },
+    {
+      "IdPagamento": 10,
+      "Talao": "TL202620272009",
+      "Referente": "Propina Mensal",
+      "Valor": 700,
+      "Data": "2026-02-10",
+      "Mes": "Fevereiro",
+      "FormaPagamento": "Transferência",
+      "CodAluno": "ALU0003",
+      "CodInscricao": 3,
+      "Operador": "FUN007"
+    },
+    {
+      "IdPagamento": 11,
+      "Talao": "TL202620272010",
+      "Referente": "Propina Mensal",
+      "Valor": 700,
+      "Data": "2026-03-10",
+      "Mes": "Março",
+      "FormaPagamento": "Transferência",
+      "CodAluno": "ALU0003",
+      "CodInscricao": 3,
+      "Operador": "FUN007"
+    },
+    {
+      "IdPagamento": 12,
+      "Talao": "TL202620272011",
+      "Referente": "Propina Mensal",
+      "Valor": 700,
+      "Data": "2026-04-10",
+      "Mes": "Abril",
+      "FormaPagamento": "Transferência",
+      "CodAluno": "ALU0003",
+      "CodInscricao": 3,
+      "Operador": "FUN007"
+    },
+    {
+      "IdPagamento": 13,
+      "Talao": "TL202620271004",
+      "Referente": "Taxa de Inscrição",
+      "Valor": 600,
+      "Data": "2026-01-13",
+      "Mes": "Janeiro",
+      "FormaPagamento": "Numerário",
+      "CodAluno": "ALU0004",
+      "CodInscricao": 4,
+      "Operador": "FUN007"
+    },
+    {
+      "IdPagamento": 14,
+      "Talao": "TL202620272013",
+      "Referente": "Propina Mensal",
+      "Valor": 800,
+      "Data": "2026-02-10",
+      "Mes": "Fevereiro",
+      "FormaPagamento": "Transferência",
+      "CodAluno": "ALU0004",
+      "CodInscricao": 4,
+      "Operador": "FUN007"
+    },
+    {
+      "IdPagamento": 15,
+      "Talao": "TL202620272014",
+      "Referente": "Propina Mensal",
+      "Valor": 800,
+      "Data": "2026-03-10",
+      "Mes": "Março",
+      "FormaPagamento": "Transferência",
+      "CodAluno": "ALU0004",
+      "CodInscricao": 4,
+      "Operador": "FUN007"
+    },
+    {
+      "IdPagamento": 16,
+      "Talao": "TL202620272015",
+      "Referente": "Propina Mensal",
+      "Valor": 800,
+      "Data": "2026-04-10",
+      "Mes": "Abril",
+      "FormaPagamento": "Transferência",
+      "CodAluno": "ALU0004",
+      "CodInscricao": 4,
+      "Operador": "FUN007"
+    },
+    {
+      "IdPagamento": 17,
+      "Talao": "TL202620271005",
+      "Referente": "Taxa de Inscrição",
+      "Valor": 500,
+      "Data": "2026-01-14",
+      "Mes": "Janeiro",
+      "FormaPagamento": "Numerário",
+      "CodAluno": "ALU0005",
+      "CodInscricao": 5,
+      "Operador": "FUN007"
+    },
+    {
+      "IdPagamento": 18,
+      "Talao": "TL202620271006",
+      "Referente": "Taxa de Inscrição",
+      "Valor": 500,
+      "Data": "2026-01-15",
+      "Mes": "Janeiro",
+      "FormaPagamento": "Numerário",
+      "CodAluno": "ALU0006",
+      "CodInscricao": 6,
+      "Operador": "FUN007"
+    },
+    {
+      "IdPagamento": 19,
+      "Talao": "TL202620271007",
+      "Referente": "Taxa de Inscrição",
+      "Valor": 500,
+      "Data": "2026-01-16",
+      "Mes": "Janeiro",
+      "FormaPagamento": "Numerário",
+      "CodAluno": "ALU0007",
+      "CodInscricao": 7,
+      "Operador": "FUN007"
+    },
+    {
+      "IdPagamento": 20,
+      "Talao": "TL202620271008",
+      "Referente": "Taxa de Inscrição",
+      "Valor": 550,
+      "Data": "2026-01-17",
+      "Mes": "Janeiro",
+      "FormaPagamento": "Numerário",
+      "CodAluno": "ALU0008",
+      "CodInscricao": 8,
+      "Operador": "FUN007"
+    }
+  ],
+  "usuarios": [
+    {
+      "IdUsuario": 1,
+      "Usuario": "admin",
+      "Senha": "admin123",
+      "Nome": "Administrador do Sistema",
+      "Perfil": "Administrador",
+      "CodFuncionario": "",
+      "Ativo": "Sim"
+    },
+    {
+      "IdUsuario": 2,
+      "Usuario": "diretor",
+      "Senha": "dir123",
+      "Nome": "Dr. Paulo Muianga",
+      "Perfil": "Director",
+      "CodFuncionario": "FUN005",
+      "Ativo": "Sim"
+    },
+    {
+      "IdUsuario": 3,
+      "Usuario": "secretaria",
+      "Senha": "sec123",
+      "Nome": "Luísa Fernanda Cuna",
+      "Perfil": "Secretaria",
+      "CodFuncionario": "FUN006",
+      "Ativo": "Sim"
+    },
+    {
+      "IdUsuario": 4,
+      "Usuario": "financeiro",
+      "Senha": "fin123",
+      "Nome": "Rui Miguel Mabjaia",
+      "Perfil": "Financeiro",
+      "CodFuncionario": "FUN007",
+      "Ativo": "Sim"
+    },
+    {
+      "IdUsuario": 5,
+      "Usuario": "professor",
+      "Senha": "prof123",
+      "Nome": "Carlos Alberto Macuácua",
+      "Perfil": "Professor",
+      "CodFuncionario": "FUN001",
+      "Ativo": "Sim"
+    },
+    {
+      "IdUsuario": 6,
+      "Usuario": "prof2",
+      "Senha": "prof123",
+      "Nome": "Ana Maria Chissano",
+      "Perfil": "Professor",
+      "CodFuncionario": "FUN002",
+      "Ativo": "Sim"
+    }
+  ],
+  "renovacoes": [],
+  "documentosEmitidos": [],
+  "logs": []
+}
