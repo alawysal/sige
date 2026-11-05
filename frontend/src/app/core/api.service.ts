@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, firstValueFrom } from 'rxjs';
+import { BehaviorSubject, firstValueFrom, Observable } from 'rxjs';
 import { Change, Session, WorkspaceData } from './models';
 
 const KEYS: Record<string, string> = {
@@ -12,17 +12,20 @@ const KEYS: Record<string, string> = {
 @Injectable({providedIn:'root'})
 export class ApiService {
  private token = sessionStorage.getItem('sige_token') || '';
+ private school = sessionStorage.getItem('sige_school') || '';
  readonly data = new BehaviorSubject<WorkspaceData | null>(null);
  readonly expired = new BehaviorSubject(false);
  constructor(private http: HttpClient) {}
  get hasSession(): boolean { return !!this.token; }
- private headers(): HttpHeaders { return new HttpHeaders({Authorization: `Bearer ${this.token}`}); }
+ private headers(): HttpHeaders {let headers=new HttpHeaders({Authorization: `Bearer ${this.token}`});return this.school?headers.set('X-School-Id',this.school):headers;}
  async login(username: string, password: string): Promise<WorkspaceData> {
   const result = await firstValueFrom(this.http.post<{token: string; user: Session}>('/api/auth/login',{username,password}));
-  this.token=result.token;sessionStorage.setItem('sige_token',this.token);this.expired.next(false);
+  this.token=result.token;this.school='';sessionStorage.removeItem('sige_school');sessionStorage.setItem('sige_token',this.token);this.expired.next(false);
   try {return await this.load();} catch(error) {this.logout();throw error;}
  }
  async load(): Promise<WorkspaceData> { return this.publish(await this.request<WorkspaceData>('GET','/workspace')); }
+ async backup(): Promise<WorkspaceData>{return this.request<WorkspaceData>('GET','/backup');}
+ async selectSchool(school: string): Promise<WorkspaceData>{const previous=this.school;this.school=school||'*';try{const data=await this.load();sessionStorage.setItem('sige_school',this.school);return data;}catch(error){this.school=previous;throw error;}}
  publish(data: WorkspaceData): WorkspaceData {this.data.next(data);return data;}
  async commit(before: WorkspaceData, after: WorkspaceData): Promise<WorkspaceData> {
   const changes: Change[]=[];
@@ -36,19 +39,24 @@ export class ApiService {
   if(!changes.length&&!config)return after;
   return this.publish(await this.request<WorkspaceData>('POST','/transactions',{revision:before.revision,changes,config}));
  }
- async exportRenewals(year: string): Promise<string>{return firstValueFrom(this.http.get('/api/exports/renewals',{params:{year},headers:this.headers(),responseType:'text'}));}
+ async exportRenewals(year: string): Promise<string>{return this.execute(this.http.get('/api/exports/renewals',{params:{year},headers:this.headers(),responseType:'text'}));}
  async renew(origin: string,destination: string): Promise<WorkspaceData>{return this.publish(await this.request<WorkspaceData>('POST','/renewals',{revision:this.data.value?.revision,origin,destination}));}
  async restore(data: WorkspaceData): Promise<WorkspaceData>{return this.publish(await this.request<WorkspaceData>('POST','/backup/restore',{revision:this.data.value?.revision,data}));}
  async reset(): Promise<WorkspaceData>{return this.publish(await this.request<WorkspaceData>('POST','/demo/reset',{revision:this.data.value?.revision}));}
  private async request<T>(method: string,path: string,body?: unknown): Promise<T>{
-  try{return await firstValueFrom(this.http.request<T>(method,'/api'+path,{body,headers:this.headers()}));}
+  return this.execute(this.http.request<T>(method,'/api'+path,{body,headers:this.headers()}));
+ }
+ private async execute<T>(request: Observable<T>): Promise<T>{
+  try{return await firstValueFrom(request);}
   catch(error){if(error instanceof HttpErrorResponse&&error.status===401){this.logout();this.expired.next(true);}throw error;}
  }
- logout(): void {this.token='';sessionStorage.removeItem('sige_token');this.data.next(null);}
+ logout(): void {this.token='';this.school='';sessionStorage.removeItem('sige_token');sessionStorage.removeItem('sige_school');this.data.next(null);}
  error(error: unknown): string {
   if(error instanceof HttpErrorResponse){
    if(error.status===0||error.status>=502)return 'Não foi possível contactar o servidor. Os dados não foram gravados. Verifique a ligação e tente novamente.';
-   return error.error?.message || 'Não foi possível concluir a operação. Tente novamente.';
+   let body=error.error;
+   if(typeof body==='string'){try{body=JSON.parse(body);}catch{body=null;}}
+   return body?.message || 'Não foi possível concluir a operação. Tente novamente.';
   }
   return error instanceof Error?error.message:'Não foi possível concluir a operação.';
  }

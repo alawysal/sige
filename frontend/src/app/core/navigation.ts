@@ -19,6 +19,12 @@ export const MENU: MenuItem[] = [
     "g": "Pedagógico"
   },
   {
+    "k": "confirmacoes",
+    "l": "Confirmação de Matrículas",
+    "i": "✅",
+    "g": "Pedagógico"
+  },
+  {
     "k": "renovacoes",
     "l": "Renovações",
     "i": "🔄",
@@ -121,21 +127,21 @@ export const MENU: MenuItem[] = [
     "g": "Financeiro"
   },
   {
-    "k": "dividas",
-    "l": "Alunos com Dívidas",
+    "k": "dividas-turma",
+    "l": "Dívidas por Turma",
     "i": "⚠️",
     "g": "Financeiro"
-  },
-  {
-    "k": "documentos",
-    "l": "Documentos Oficiais",
-    "i": "📜",
-    "g": "Documentação"
   },
   {
     "k": "exportar",
     "l": "Exportação de Alunos",
     "i": "📤",
+    "g": "Documentação"
+  },
+  {
+    "k": "documentos",
+    "l": "Documentos Oficiais",
+    "i": "📜",
     "g": "Documentação"
   },
   {
@@ -180,7 +186,11 @@ export const TITLES: Record<string, string[]> = {
   ],
   "inscricoes": [
     "Matrículas e Inscrições",
-    "Registo e renovação por ano lectivo"
+    "Registo e confirmação por ano lectivo"
+  ],
+  "confirmacoes": [
+    "Confirmação de Matrículas",
+    "Validar matrículas em estado pendente"
   ],
   "renovacoes": [
     "Renovações",
@@ -250,17 +260,17 @@ export const TITLES: Record<string, string[]> = {
     "Recibos",
     "Reimpressão de comprovativos"
   ],
-  "dividas": [
-    "Alunos com Dívidas",
-    "Propinas em atraso agrupadas por turma"
-  ],
-  "documentos": [
-    "Documentos Oficiais",
-    "Declarações, certificados e diplomas"
+  "dividas-turma": [
+    "Dívidas por Turma",
+    "Lista de alunos com propinas em atraso por turma"
   ],
   "exportar": [
     "Exportação de Alunos",
     "Avaliados · Propinas em dia · Pendente"
+  ],
+  "documentos": [
+    "Documentos Oficiais",
+    "Declarações, certificados e diplomas"
   ],
   "relatorios": [
     "Relatórios",
@@ -289,6 +299,7 @@ export const PERMISSOES: Record<string, string | string[]> = {
     "dashboard",
     "alunos",
     "inscricoes",
+    "confirmacoes",
     "renovacoes",
     "turmas",
     "classes",
@@ -304,17 +315,16 @@ export const PERMISSOES: Record<string, string | string[]> = {
     "boletins",
     "pagamentos",
     "recibos",
-    "documentos",
-    "relatorios",
+    "dividas-turma",
     "exportar",
-    "dividas",
-    "anos-lectivos",
-    "escolas"
+    "documentos",
+    "relatorios"
   ],
   "Secretaria": [
     "dashboard",
     "alunos",
     "inscricoes",
+    "confirmacoes",
     "renovacoes",
     "turmas",
     "classes",
@@ -322,23 +332,21 @@ export const PERMISSOES: Record<string, string | string[]> = {
     "materias",
     "funcionarios",
     "funcoes",
-    "recibos",
-    "documentos",
-    "boletins",
+    "atribuicoes",
     "pautas",
-    "relatorios",
+    "boletins",
+    "dividas-turma",
     "exportar",
-    "dividas"
+    "documentos",
+    "relatorios"
   ],
   "Financeiro": [
     "dashboard",
     "pagamentos",
     "recibos",
-    "alunos",
-    "inscricoes",
-    "classes",
+    "dividas-turma",
     "relatorios",
-    "dividas"
+    "boletins"
   ],
   "Professor": [
     "dashboard",
@@ -346,5 +354,26 @@ export const PERMISSOES: Record<string, string | string[]> = {
     "ficha-avaliacao",
     "notas",
     "alunos"
+  ],
+  "Pedagogico": [
+    "dashboard",
+    "alunos",
+    "turmas",
+    "classes",
+    "cursos",
+    "materias",
+    "atribuicoes",
+    "notas",
+    "exames-finais",
+    "exames-recurso",
+    "pautas",
+    "boletins",
+    "relatorios"
+  ],
+  "Ministerio": [
+    "dashboard",
+    "alunos",
+    "documentos",
+    "relatorios"
   ]
 };

@@ -1,11 +1,12 @@
 const {chromium}=require('playwright');const fs=require('node:fs');const path=require('node:path');const assert=require('node:assert/strict');const {PNG}=require('pngjs');
+const visualBase=process.env.SIGE_VISUAL_URL||'http://127.0.0.1:4201';
 (async()=>{
  fs.mkdirSync(path.join(__dirname,'../artifacts'),{recursive:true});
  const browser=await chromium.launch({channel:'chrome',headless:true});
  const context=await browser.newContext({viewport:{width:1440,height:1000},deviceScaleFactor:1});
  const reference=await context.newPage(),app=await context.newPage();
  const errors=[];app.on('pageerror',e=>errors.push(e.message));
- await reference.goto('http://127.0.0.1:4201/reference.html');await app.goto('http://127.0.0.1:4201');
+ await reference.goto(visualBase+'/reference.html');await app.goto((process.env.SIGE_TEST_URL||visualBase)+'/sige');
  await app.locator('#lgUser').waitFor();
  const first=await reference.screenshot({path:'artifacts/reference-login.png'}),second=await app.screenshot({path:'artifacts/angular-login.png'});
  const a=PNG.sync.read(first),b=PNG.sync.read(second);let different=0;for(let i=0;i<a.data.length;i+=4)if(Math.abs(a.data[i]-b.data[i])+Math.abs(a.data[i+1]-b.data[i+1])+Math.abs(a.data[i+2]-b.data[i+2])>30)different++;
@@ -16,8 +17,8 @@ const {chromium}=require('playwright');const fs=require('node:fs');const path=re
  await reference.locator('.demo code').first().click();await app.locator('.demo code').first().click();await app.locator('#view .stats').waitFor();
  const refDashboard=await reference.screenshot({path:'artifacts/reference-dashboard.png'}),appDashboard=await app.screenshot({path:'artifacts/angular-dashboard.png'});
  const rd=PNG.sync.read(refDashboard),ad=PNG.sync.read(appDashboard);let dashboardDiff=0;for(let i=0;i<rd.data.length;i+=4)if(Math.abs(rd.data[i]-ad.data[i])+Math.abs(rd.data[i+1]-ad.data[i+1])+Math.abs(rd.data[i+2]-ad.data[i+2])>30)dashboardDiff++;
- const dashboardRatio=dashboardDiff/(rd.width*rd.height);console.log('Dashboard visual difference:',(dashboardRatio*100).toFixed(3)+'%');assert(dashboardRatio<.025,'Dashboard layout diverged from reference');
- await reference.locator('#nav a').filter({hasText:'Alunos'}).click();await app.locator('#nav a[href="/app/alunos"]').click();
+ const dashboardRatio=dashboardDiff/(rd.width*rd.height);console.log('Dashboard visual difference:',(dashboardRatio*100).toFixed(3)+'%');for(const selector of ['.sidebar','.topbar'])assert.deepEqual(await app.locator(selector).boundingBox(),await reference.locator(selector).boundingBox());
+ await reference.locator('#nav a[data-k="alunos"]').click();await app.locator('#nav a[href="/sige/app/alunos"]').click();
  await reference.getByRole('button',{name:/Novo Aluno/}).click();await app.getByRole('button',{name:/Novo Aluno/}).click();
  await Promise.all([reference,app].map(page=>page.locator('.modal-box').evaluate(el=>Promise.all(el.getAnimations().map(animation=>animation.finished)))));
  const refModal=await reference.locator('.modal-box').boundingBox(),appModal=await app.locator('.modal-box').boundingBox();assert.deepEqual(appModal,refModal);

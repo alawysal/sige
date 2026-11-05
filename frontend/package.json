@@ -3,11 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 4201 --host 0.0.0.0 --proxy-config proxy.conf.json",
+    "start": "ng serve --port 4201 --host 0.0.0.0",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "node ../tests/renderer.test.cjs",
-    "test:unit": "ng test --watch=false --browsers=ChromeHeadless"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
@@ -21,8 +20,7 @@
     "@angular/router": "^16.2.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.13.0",
-    "bootstrap": "5.3.3"
+    "zone.js": "~0.13.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.2.16",

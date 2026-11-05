@@ -1,1 +1,12 @@
-{"name":"sige-verification","private":true,"scripts":{"test":"node e2e.cjs"},"devDependencies":{"playwright":"1.51.1","pngjs":"7.0.0"}}
+{
+  "name": "sige-verification",
+  "private": true,
+  "scripts": {
+    "test": "node e2e.cjs",
+    "test:global": "node global.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.51.1",
+    "pngjs": "7.0.0"
+  }
+}

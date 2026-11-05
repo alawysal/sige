@@ -1,79 +1,581 @@
-
-
-<!-- ============ LOGIN ============ -->
 <div id="login" [class.hidden]="!!db">
   <div class="login-shell">
     <div class="login-hero">
       <div>
         <div class="tag">Sistema Integrado</div>
-        <h1>SIGE <span>Guiné-Bissau</span></h1>
-        <p>Plataforma completa de gestão escolar — matrículas, renovações plurianuais, avaliações trimestrais com notas inteiras, exames finais, provas de recurso, propinas em FCFA e documentação oficial.</p>
+        <h1>SIGE <span>Nacional</span></h1>
+        <p>Gestão escolar integrada de matrículas, avaliações, finanças e documentos oficiais.</p>
         <ul>
-          <li>Matrículas e renovações pendentes por ano lectivo</li>
-          <li>3 Trimestres (MAC · NPP · NPT) + Exame Final + Recurso</li>
-          <li>Regras de aprovação configuráveis por classe</li>
-          <li>Bloqueio automático de notas após submissão</li>
-          <li>Boletins, certificados, diplomas e pautas</li>
-          <li>Multiusuário com privilégios por perfil</li>
+          <li>Dados escolares sincronizados com a base central</li>
+          <li>Gestão académica por períodos e disciplinas</li>
+          <li>Perfis e permissões aplicados no servidor</li>
+          <li>Documentos oficiais e relatórios estatísticos</li>
         </ul>
       </div>
-      <div class="foot">© 2026 SIGE Guiné-Bissau · v4.0</div>
+      <div class="foot">© 2026 SIGE Guiné-Bissau</div>
     </div>
     <form class="login-form" (ngSubmit)="login()" #loginForm="ngForm">
+      <img class="national-emblem" src="assets/brasao-guine-bissau.svg" alt="Brasão da República da Guiné-Bissau">
       <h2>Iniciar Sessão</h2>
       <p class="sub">Introduza as suas credenciais de acesso</p>
-      <div id="loginErr" role="alert" [style.display]="loginError ? 'block' : 'none'">{{loginError}}</div>
+      <div class="login-error" *ngIf="loginError">{{ loginError }}</div>
       <label for="lgUser">Utilizador</label>
-      <input id="lgUser" name="username" [(ngModel)]="username" required placeholder="ex.: admin" autocomplete="username">
+      <input id="lgUser" name="username" [(ngModel)]="username" required placeholder="Utilizador" autocomplete="username">
       <label for="lgPass">Palavra-passe</label>
-      <input id="lgPass" name="password" [(ngModel)]="password" required type="password" placeholder="••••••••" autocomplete="current-password">
-      <button class="btn-login" type="submit" [disabled]="loggingIn || !loginForm.valid">{{loggingIn ? 'A ENTRAR…' : 'ENTRAR NO SISTEMA'}}</button>
-      <div class="demo">
-        <b>Contas de demonstração</b>
-        <div *ngFor="let account of accounts">{{account.icon}} <code role="button" tabindex="0" (click)="quickLogin(account.user,account.password)" (keydown.enter)="quickLogin(account.user,account.password)">{{account.user}} / {{account.password}}</code> · {{account.label}}</div>
-      </div>
+      <input id="lgPass" name="password" [(ngModel)]="password" required type="password" placeholder="Palavra-passe" autocomplete="current-password">
+      <button class="btn-login" type="submit" [disabled]="loggingIn || !loginForm.valid">{{ loggingIn ? 'A entrar…' : 'Entrar no sistema' }}</button>
     </form>
   </div>
 </div>
 
-<!-- ============ APP ============ -->
 <div id="app" [class.hidden]="!db">
   <aside class="sidebar" id="sidebar" [class.open]="sidebarOpen">
     <div class="brand">
-      <div class="b-logo">SIGE</div>
-      <div><h2>SIGE Guiné-Bissau</h2><small>Gestão Escolar</small></div>
+      <div class="b-logo" id="brandLogo"><img *ngIf="db?.['config']?.['logo']; else brandText" [src]="db?.['config']?.['logo']" alt="Logotipo da escola"><ng-template #brandText>SIGE</ng-template></div>
+      <div>
+        <h2>SIGE Nacional</h2>
+        <small>Gestão Escolar</small>
+      </div>
     </div>
-    <nav id="nav" aria-label="Menu principal"><ng-container *ngFor="let item of navigation">
-      <div class="nav-group" *ngIf="item.heading">{{item.g}}</div>
-      <a [routerLink]="['/sige/app',item.k]" [class.active]="view===item.k" [attr.aria-current]="view===item.k ? 'page' : null" (click)="sidebarOpen=false"><i>{{item.i}}</i><span>{{item.l}}</span></a>
-    </ng-container></nav>
+
+    <nav id="nav" aria-label="Menu principal">
+      <ng-container *ngFor="let item of navigation">
+        <div class="nav-group" *ngIf="item.heading">{{ item.g }}</div>
+        <a [routerLink]="['/sige/app', item.k]" [class.active]="view === item.k"
+           [attr.aria-current]="view === item.k ? 'page' : null" (click)="sidebarOpen = false">
+          <i>{{ item.i }}</i><span>{{ item.l }}</span>
+        </a>
+      </ng-container>
+    </nav>
+
     <div class="user-box">
-      <div class="avatar" id="uAvatar">{{initials}}</div>
-      <div class="u-info"><b id="uNome">{{db?.session?.Nome}}</b><span id="uPerfil">{{db?.session?.Perfil}}</span></div>
-      <button (click)="logoutOpen=true" aria-label="Terminar sessão" title="Terminar sessão">⏻</button>
+      <div class="avatar">{{ username.charAt(0).toUpperCase() }}</div>
+      <div class="u-info">
+        <b>{{ db?.session?.Nome }}</b>
+        <span>{{ db?.session?.Perfil }}</span>
+      </div>
+      <button (click)="logoutOpen = true" title="Terminar sessão">⏻</button>
     </div>
   </aside>
+
   <div class="main">
     <header class="topbar">
-      <button id="menuBtn" (click)="sidebarOpen=!sidebarOpen" aria-label="Abrir menu" [attr.aria-expanded]="sidebarOpen">☰</button>
-      <div style="flex:1;min-width:0">
-        <h1 id="pageTitle">{{title[0]}}</h1>
-        <div class="crumb" id="pageCrumb">{{title[1]}}</div>
-      </div>
-      <div class="chips d-flex align-items-center">
-        <span class="chip" id="anoChip">Ano Lectivo {{db?.config?.['anoActivo'] || '—'}}</span>
+      <button id="menuBtn" (click)="sidebarOpen = !sidebarOpen" aria-label="Abrir menu" [attr.aria-expanded]="sidebarOpen">☰</button>
+      <div style="flex:1;min-width:0"><h1>{{ pageTitle[0] }}</h1><div class="crumb">{{ pageTitle[1] }}</div></div>
+      <img class="national-flag" src="assets/bandeira-guine-bissau.svg" alt="Bandeira da Guiné-Bissau" title="República da Guiné-Bissau">
+      <div class="chips">
+        <select *ngIf="db?.['scope']?.global" id="schoolScope" aria-label="Escola activa"
+          [value]="db?.['scope']?.schoolId || '*'" (change)="selectSchool($event)">
+          <option value="*">Todas as escolas</option>
+          <option *ngFor="let school of db?.['scope']?.schools" [value]="school.CodEscola">{{ school.Nome }}</option>
+        </select>
+        <span class="chip">Ano lectivo {{ db?.['config']?.['anoActivo'] || '—' }}</span>
       </div>
     </header>
-    <section class="view" id="view" [attr.aria-busy]="busy"></section>
+
+    <section class="view" id="view" [attr.aria-busy]="busy">
+      <ng-container *ngIf="currentModule === 'dashboard'">
+        <div class="stats">
+          <div class="stat" *ngFor="let stat of stats" [ngClass]="stat.tone">
+            <div class="ico">📊</div>
+            <div>
+              <b>{{ stat.value }}</b>
+              <span>{{ stat.title }}</span>
+              <div class="sub">{{ stat.trend }}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="card">
+            <div class="card-head">
+              <h2>📊 Alunos por Classe</h2>
+              <button class="btn btn-ghost" (click)="openModal()">+ Nova matrícula</button>
+            </div>
+            <div class="card-body">
+              <div class="bar-row"><span class="lbl">10ª Classe</span><span class="bar"><i style="width:82%"></i></span><span class="val">82</span></div>
+              <div class="bar-row"><span class="lbl">11ª Classe</span><span class="bar"><i style="width:74%"></i></span><span class="val">74</span></div>
+              <div class="bar-row"><span class="lbl">12ª Classe</span><span class="bar"><i style="width:68%"></i></span><span class="val">68</span></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h2>👥 Distribuição por Sexo</h2></div>
+            <div class="card-body">
+              <div class="bar-row"><span class="lbl">Masculino</span><span class="bar"><i style="width:52%; background:linear-gradient(90deg,#0b3d6b,#1a6fb5);"></i></span><span class="val">52%</span></div>
+              <div class="bar-row"><span class="lbl">Feminino</span><span class="bar"><i style="width:48%; background:linear-gradient(90deg,#e8871e,#f0a500);"></i></span><span class="val">48%</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h2>📋 Alunos em destaque</h2><button class="btn btn-ghost">Ver tudo</button></div>
+          <div class="card-body np">
+            <div class="tabela-wrap">
+              <table class="tabela">
+                <thead>
+                  <tr>
+                    <th>Aluno</th>
+                    <th>Turma</th>
+                    <th>Nota</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let aluno of alunos | slice:0:5">
+                    <td>{{ aluno.nome }}</td>
+                    <td>{{ aluno.turma }}</td>
+                    <td>{{ aluno.status === 'Aprovada' ? '18' : aluno.status === 'Em recurso' ? '15' : '14' }}</td>
+                    <td>
+                      <span class="badge" [ngClass]="aluno.status === 'Aprovada' ? 'badge-ok' : aluno.status === 'Em recurso' ? 'badge-warn' : 'badge-gray'">
+                        {{ aluno.status }}
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="card">
+            <div class="card-head"><h2>💳 Pagamentos</h2></div>
+            <div class="card-body">
+              <div class="payment-list" *ngFor="let item of pagamentos | slice:0:4">
+                <div>
+                  <strong>{{ item.referencia }}</strong>
+                  <small>{{ item.valor }} MT</small>
+                </div>
+                <span class="badge" [ngClass]="item.estado === 'Pago' ? 'badge-ok' : 'badge-warn'">{{ item.estado }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h2>⚡ Alertas</h2></div>
+            <div class="card-body">
+              <ul class="alert-list">
+                <li *ngFor="let alerta of alertas">{{ alerta }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h2>📈 Resumo académico</h2></div>
+          <div class="card-body">
+            <div class="summary-box">
+              <div>
+                <span>Trimestres</span>
+                <strong>{{ summary.trimestres }}</strong>
+              </div>
+              <div>
+                <span>Exames finais</span>
+                <strong>{{ summary.exames }}</strong>
+              </div>
+              <div>
+                <span>Recursos</span>
+                <strong>{{ summary.recursos }}</strong>
+              </div>
+              <div>
+                <span>Transações</span>
+                <strong>{{ summary.transacoes }}</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="currentModule === 'alunos'">
+        <div class="toolbar">
+          <input class="search" type="search" [(ngModel)]="searchStudent" placeholder="Pesquisar por nome, ID ou encarregado..." />
+          <div class="spacer"></div>
+          <button class="btn btn-primary" (click)="addAluno()">➕ Novo aluno</button>
+        </div>
+        <div class="card">
+          <div class="card-body np">
+            <div class="tabela-wrap">
+              <table class="tabela">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Sexo</th>
+                    <th>Nascimento</th>
+                    <th>Encarregado</th>
+                    <th>Contacto</th>
+                    <th>Turma</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let aluno of filteredAlunos">
+                    <td>{{ aluno.id }}</td>
+                    <td>{{ aluno.nome }}</td>
+                    <td>{{ aluno.sexo }}</td>
+                    <td>{{ aluno.nascimento }}</td>
+                    <td>{{ aluno.encarregado }}</td>
+                    <td>{{ aluno.celular }}</td>
+                    <td>{{ aluno.turma }}</td>
+                    <td><span class="badge" [ngClass]="aluno.status === 'Aprovada' ? 'badge-ok' : aluno.status === 'Em recurso' ? 'badge-warn' : 'badge-gray'">{{ aluno.status }}</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="currentModule === 'inscricoes'">
+        <div class="toolbar">
+          <div class="spacer"></div>
+          <button class="btn btn-primary" (click)="openModal()">➕ Nova matrícula</button>
+        </div>
+        <div class="card">
+          <div class="card-body np">
+            <div class="tabela-wrap">
+              <table class="tabela">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Aluno</th>
+                    <th>Classe</th>
+                    <th>Turma</th>
+                    <th>Curso</th>
+                    <th>Valor</th>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of inscricoes">
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.aluno }}</td>
+                    <td>{{ item.classe }}</td>
+                    <td>{{ item.turma }}</td>
+                    <td>{{ item.curso }}</td>
+                    <td>{{ item.valor }} MT</td>
+                    <td><span class="badge" [ngClass]="item.estado === 'Matriculado' ? 'badge-ok' : 'badge-warn'">{{ item.estado }}</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="currentModule === 'renovacoes'">
+        <div class="card">
+          <div class="card-head"><h2>🔄 Renovação de matrículas</h2></div>
+          <div class="card-body np">
+            <div class="tabela-wrap">
+              <table class="tabela">
+                <thead>
+                  <tr>
+                    <th>Aluno</th>
+                    <th>Turma anterior</th>
+                    <th>Nova turma</th>
+                    <th>Curso</th>
+                    <th>Valor</th>
+                    <th>Estado</th>
+                    <th>Ação</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of renovacoes">
+                    <td>{{ item.aluno }}</td>
+                    <td>{{ item.turmaAnterior }}</td>
+                    <td>{{ item.turmaNova }}</td>
+                    <td>{{ item.curso }}</td>
+                    <td>{{ item.valor }} MT</td>
+                    <td><span class="badge" [ngClass]="item.estado === 'Confirmada' ? 'badge-ok' : 'badge-warn'">{{ item.estado }}</span></td>
+                    <td>
+                      <button *ngIf="item.estado !== 'Confirmada' && hasAccess(['ADMIN', 'DIRETOR'])" class="btn btn-ghost" (click)="confirmarRenovacao(item.id)">Confirmar</button>
+                      <button *ngIf="item.estado === 'Confirmada' && hasAccess(['ADMIN', 'DIRETOR'])" class="btn btn-ghost" (click)="recusarRenovacao(item.id)">Reverter</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="currentModule === 'notas'">
+        <div class="card">
+          <div class="card-head"><h2>✍️ Lançamento de notas</h2></div>
+          <div class="card-body np">
+            <div class="tabela-wrap">
+              <table class="tabela">
+                <thead>
+                  <tr>
+                    <th>Aluno</th>
+                    <th>Turma</th>
+                    <th>Trimestre I</th>
+                    <th>Trimestre II</th>
+                    <th>Exame Final</th>
+                    <th>Recurso</th>
+                    <th>Situação</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let record of avaliacoesProcessadas">
+                    <td>{{ record.aluno }}</td>
+                    <td>{{ record.turma }}</td>
+                    <td><input type="number" min="0" max="20" step="0.1" [value]="record.trimestre1" (input)="updateAvaliacao(record.aluno, 'trimestre1', +($any($event.target).value || 0))" [disabled]="!hasAccess(['ADMIN', 'PROFESSOR', 'DIRETOR'])" /></td>
+                    <td><input type="number" min="0" max="20" step="0.1" [value]="record.trimestre2" (input)="updateAvaliacao(record.aluno, 'trimestre2', +($any($event.target).value || 0))" [disabled]="!hasAccess(['ADMIN', 'PROFESSOR', 'DIRETOR'])" /></td>
+                    <td><input type="number" min="0" max="20" step="0.1" [value]="record.exameFinal" (input)="updateAvaliacao(record.aluno, 'exameFinal', +($any($event.target).value || 0))" [disabled]="!hasAccess(['ADMIN', 'PROFESSOR', 'DIRETOR'])" /></td>
+                    <td><input type="number" min="0" max="20" step="0.1" [value]="record.recurso ?? ''" (input)="updateAvaliacao(record.aluno, 'recurso', +($any($event.target).value || 0))" [disabled]="!hasAccess(['ADMIN', 'PROFESSOR', 'DIRETOR'])" /></td>
+                    <td><span class="badge" [ngClass]="record.situacaoReal === 'Aprovada' ? 'badge-ok' : record.situacaoReal === 'Em recurso' ? 'badge-warn' : 'badge-gray'">{{ record.situacaoReal }}</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="currentModule === 'pagamentos'">
+        <div class="toolbar">
+          <div class="spacer"></div>
+          <button class="btn btn-primary" (click)="addPagamento()" *ngIf="hasAccess(['ADMIN', 'FINANCEIRO', 'SECRETARIA'])">💰 Novo pagamento</button>
+        </div>
+        <div class="card">
+          <div class="card-body np">
+            <div class="tabela-wrap">
+              <table class="tabela">
+                <thead>
+                  <tr>
+                    <th>Ref.</th>
+                    <th>Aluno</th>
+                    <th>Valor</th>
+                    <th>Data</th>
+                    <th>Estado</th>
+                    <th>Ação</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of pagamentos">
+                    <td>{{ item.referencia }}</td>
+                    <td>{{ item.aluno }}</td>
+                    <td>{{ item.valor }} MT</td>
+                    <td>{{ item.data }}</td>
+                    <td><span class="badge" [ngClass]="item.estado === 'Pago' ? 'badge-ok' : 'badge-warn'">{{ item.estado }}</span></td>
+                    <td>
+                      <button *ngIf="hasAccess(['ADMIN', 'FINANCEIRO'])" class="btn btn-ghost" (click)="atualizarPagamento(item.id)">{{ item.estado === 'Pago' ? 'Marcar pendente' : 'Marcar pago' }}</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="currentModule === 'turmas'">
+        <div class="card">
+          <div class="card-head"><h2>👥 Gestão de turmas</h2></div>
+          <div class="card-body np">
+            <div class="tabela-wrap">
+              <table class="tabela">
+                <thead>
+                  <tr>
+                    <th>Turma</th>
+                    <th>Nível</th>
+                    <th>Director</th>
+                    <th>Alunos</th>
+                    <th>Capacidade</th>
+                    <th>Turno</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let turma of turmas">
+                    <td>{{ turma.nome }}</td>
+                    <td>{{ turma.nivel }}</td>
+                    <td>{{ turma.director }}</td>
+                    <td>{{ turma.alunos }}</td>
+                    <td>{{ turma.capacidade }}</td>
+                    <td>{{ turma.turno }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="currentModule === 'classes'">
+        <div class="card">
+          <div class="card-head"><h2>🏷️ Classes e níveis</h2></div>
+          <div class="card-body">
+            <div class="summary-box">
+              <div><span>9ª Classe</span><strong>103</strong></div>
+              <div><span>10ª Classe</span><strong>128</strong></div>
+              <div><span>11ª Classe</span><strong>117</strong></div>
+              <div><span>12ª Classe</span><strong>96</strong></div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="currentModule === 'cursos'">
+        <div class="card">
+          <div class="card-head"><h2>🎓 Cursos</h2></div>
+          <div class="card-body np">
+            <div class="tabela-wrap">
+              <table class="tabela">
+                <thead>
+                  <tr>
+                    <th>Curso</th>
+                    <th>Nível</th>
+                    <th>Duração</th>
+                    <th>Coordenador</th>
+                    <th>Alunos</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let curso of cursos">
+                    <td>{{ curso.nome }}</td>
+                    <td>{{ curso.nivel }}</td>
+                    <td>{{ curso.duracao }}</td>
+                    <td>{{ curso.coordenador }}</td>
+                    <td>{{ curso.alunos }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="currentModule === 'materias'">
+        <div class="card">
+          <div class="card-head"><h2>📚 Matérias</h2></div>
+          <div class="card-body np">
+            <div class="tabela-wrap">
+              <table class="tabela">
+                <thead>
+                  <tr>
+                    <th>Matéria</th>
+                    <th>Docente</th>
+                    <th>Turma</th>
+                    <th>Trimestre</th>
+                    <th>Carga</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let materia of materias">
+                    <td>{{ materia.nome }}</td>
+                    <td>{{ materia.docente }}</td>
+                    <td>{{ materia.turma }}</td>
+                    <td>{{ materia.trimestre }}</td>
+                    <td>{{ materia.carga }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="currentModule === 'relatorios'">
+        <div class="card">
+          <div class="card-head"><h2>📈 Relatórios</h2></div>
+          <div class="card-body np">
+            <div class="tabela-wrap">
+              <table class="tabela">
+                <thead>
+                  <tr>
+                    <th>Relatório</th>
+                    <th>Tipo</th>
+                    <th>Período</th>
+                    <th>Estado</th>
+                    <th>Gerado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let relatorio of relatorios">
+                    <td>{{ relatorio.titulo }}</td>
+                    <td>{{ relatorio.tipo }}</td>
+                    <td>{{ relatorio.periodo }}</td>
+                    <td><span class="badge" [ngClass]="relatorio.estado === 'Disponível' ? 'badge-ok' : 'badge-warn'">{{ relatorio.estado }}</span></td>
+                    <td>{{ relatorio.geradoEm }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="currentModule === 'documentos'">
+        <div class="card">
+          <div class="card-head">
+            <h2>📄 Documentos oficiais</h2>
+            <button *ngIf="hasAccess(['ADMIN', 'SECRETARIA', 'DIRETOR'])" class="btn btn-primary" (click)="gerarDocumento('Declaração de frequência', 'Escolar')">+ Gerar documento</button>
+          </div>
+          <div class="card-body np">
+            <div class="tabela-wrap">
+              <table class="tabela">
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Tipo</th>
+                    <th>Entidade</th>
+                    <th>Código</th>
+                    <th>Status</th>
+                    <th>Imprimir</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of documentos">
+                    <td>{{ item.nome }}</td>
+                    <td>{{ item.tipo }}</td>
+                    <td>{{ item.entidade }}</td>
+                    <td>{{ item.codigo }}</td>
+                    <td><span class="badge" [ngClass]="item.status === 'Emitido' || item.status === 'Pronto' ? 'badge-ok' : 'badge-warn'">{{ item.status }}</span></td>
+                    <td><button class="btn btn-ghost" (click)="printDocument(item)">Imprimir</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="currentModule === 'dashboard' || currentModule === 'alunos' || currentModule === 'inscricoes' || currentModule === 'renovacoes' || currentModule === 'notas' || currentModule === 'pagamentos'">
+        <ng-container *ngIf="false"></ng-container>
+      </ng-container>
+    </section>
+  </div>
+</div>
+
+<div *ngIf="modalOpen" class="modal-overlay" (click)="closeModal()">
+  <div class="modal-box" (click)="$event.stopPropagation()">
+    <div class="modal-head">
+      <h3>{{ modalTitle }}</h3>
+      <button type="button" (click)="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" [innerHTML]="modalBody"></div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" (click)="closeModal()">Cancelar</button>
+      <button class="btn btn-primary" (click)="closeModal()">Guardar</button>
+    </div>
   </div>
 </div>
 
 <div id="modalRoot"></div>
 <div id="toasts" aria-live="polite"></div>
 <div id="printArea"></div>
-
-<div class="sync-cover" *ngIf="busy" aria-label="A guardar dados" role="status"><span class="visually-hidden">A guardar dados…</span></div>
-<div class="modal" *ngIf="logoutOpen" (click)="logoutOpen=false" role="dialog" aria-modal="true" aria-labelledby="logoutTitle">
- <div class="modal-box sm" (click)="$event.stopPropagation()"><div class="modal-head"><h3 id="logoutTitle">Terminar sessão</h3><button (click)="logoutOpen=false" aria-label="Fechar">✕</button></div><div class="modal-body">Deseja terminar a sessão actual?</div><div class="modal-foot"><button class="btn btn-ghost" (click)="logoutOpen=false">Cancelar</button><button class="btn btn-primary" (click)="logout()">Sair</button></div></div>
+<div class="sync-cover" *ngIf="busy" aria-label="A guardar dados" role="status">
+  <span class="visually-hidden">A guardar dados…</span>
 </div>
+<div class="modal" *ngIf="logoutOpen" (click)="logoutOpen = false" role="dialog" aria-modal="true" aria-labelledby="logoutTitle">
+  <div class="modal-box sm" (click)="$event.stopPropagation()">
+    <div class="modal-head"><h3 id="logoutTitle">Terminar sessão</h3><button (click)="logoutOpen = false" aria-label="Fechar">✕</button></div>
+    <div class="modal-body">Deseja terminar a sessão actual?</div>
+    <div class="modal-foot"><button class="btn btn-ghost" (click)="logoutOpen = false">Cancelar</button><button class="btn btn-primary" (click)="logout()">Sair</button></div>
+  </div>
+</div>
+
 <router-outlet></router-outlet>

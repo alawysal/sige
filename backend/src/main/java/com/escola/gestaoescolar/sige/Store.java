@@ -45,8 +45,9 @@ public class Store {
  }
  public void user(ObjectNode data,String hash,boolean invalidate){
   ObjectNode safe=data.deepCopy();safe.remove("Senha");
-  jdbc.update("INSERT INTO sige_users(id,username,password_hash,data) VALUES(?,?,?,?) ON DUPLICATE KEY UPDATE username=VALUES(username),password_hash=VALUES(password_hash),data=VALUES(data),token_version=token_version+?",
-   safe.path("IdUsuario").asText(),safe.path("Usuario").asText(),hash,safe.toString(),invalidate?1:0);
+  String school=safe.path("CodEscola").asText("");
+  jdbc.update("INSERT INTO sige_users(id,username,password_hash,data,codescola) VALUES(?,?,?,?,?) ON DUPLICATE KEY UPDATE username=VALUES(username),password_hash=VALUES(password_hash),data=VALUES(data),codescola=VALUES(codescola),token_version=token_version+?",
+   safe.path("IdUsuario").asText(),safe.path("Usuario").asText(),hash,safe.toString(),school.isBlank()?null:school,invalidate?1:0);
  }
  public void audit(String username,String action,String detail){jdbc.update("INSERT INTO sige_audit(created_at,actor,action,detail) VALUES(?,?,?,?)",Instant.now().toString(),username,action,detail);}
  public static ObjectNode find(JsonNode db,String module,String key,String id){for(JsonNode x:db.path(module))if(x.path(key).asText().equals(id))return (ObjectNode)x;return null;}

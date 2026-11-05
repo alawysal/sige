@@ -6,3 +6,16 @@ backend/target/
 artifacts/
 .metals/
 .DS_Store
+
+.local/
+output/
+
+# Java IDE build caches
+backend/.bloop/
+
+# Production credentials, database backups and release bundles
+.env.production
+.env.production.*
+!.env.production.example
+backups/
+releases/

@@ -21,13 +21,16 @@ public final class SchoolYear {
   }
  }
  public static ObjectNode classFor(ObjectNode db,String name,String year){
-  ObjectNode cls=Store.find(db,"classes","Classe",name);
+  return classFor(db,name,year,null);
+ }
+ public static ObjectNode classFor(ObjectNode db,String name,String year,String school){
+  ObjectNode cls=null;for(JsonNode c:db.path("classes"))if(c.path("Classe").asText().equals(name)&&(school==null||school.equals(c.path("CodEscola").asText()))){cls=(ObjectNode)c;break;}
   if(cls==null||!cls.path("PorAno").path(year).isObject())return null;
   ObjectNode value=cls.deepCopy();value.setAll((ObjectNode)cls.path("PorAno").path(year));return value;
  }
  public static ObjectNode billing(ObjectNode db,JsonNode ins){
   ObjectNode result=db.objectNode();String year=ins.path("Ano").asText();
-  ObjectNode cls=classFor(db,ins.path("Classe").asText(),year),calendar=Store.find(db,"anosLectivos",year);
+  ObjectNode cls=classFor(db,ins.path("Classe").asText(),year,ins.path("CodEscola").asText()),calendar=Store.find(db,"anosLectivos",year);
   if(cls==null||calendar==null)return result.put("emDia",false);
   LocalDate start=LocalDate.parse(calendar.path("DataAbertura").asText()),end=LocalDate.parse(calendar.path("DataFecho").asText()),today=LocalDate.now();
   LocalDate limit=today.isBefore(end)?today:end;

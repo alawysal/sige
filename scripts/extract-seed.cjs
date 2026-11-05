@@ -16,4 +16,7 @@ for(const n of db.notas){
 }
 db.notas=[...grades.values()];
 db.pagamentos.forEach((p,i)=>p.IdPagamento=i+1);
+Object.assign(db.config,JSON.parse(fs.readFileSync('backend/src/main/resources/gb-defaults.json','utf8')));
+for(const field of ['Nome','NIF','Endereco','Municipio','Provincia','Telefone','Email','Diretor'])db.escolas[0][field]=db.config['escola'+field];
+for(const c of db.classes)c.Valor=c.Propina*c.Duracao+c.Inscricao;
 fs.writeFileSync('backend/src/main/resources/demo-data.json',JSON.stringify(db,null,2)+'\n');

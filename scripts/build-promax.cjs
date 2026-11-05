@@ -1,11 +1,14 @@
 /* Converts the reference's trusted event expressions to closures at build time.
    The application never evaluates HTML event text, uses an iframe, or stores school records in the browser. */
 const fs=require('fs');const ts=require('../frontend/node_modules/typescript');const vm=require('vm');
-const html=fs.readFileSync('000_form.html','utf8');
+if(!fs.existsSync('SIGE_RGB.html'))throw Error('SIGE_RGB.html não está presente. O build de produção usa o renderizador existente em frontend/src/app/promax; só regenere se tiver a referência original.');
+const html=fs.readFileSync('SIGE_RGB.html','utf8');
 let source=html.split('<script>')[1].split('</script>')[0];
 source=require('./school-adaptations.cjs')(source);
+source=require('./rgb-adaptations.cjs')(source);
+source=require('./school-access.cjs')(source);
 const parsed=ts.createSourceFile('source.js',source,ts.ScriptTarget.Latest,true,ts.ScriptKind.JS);
-const remove=new Set(['freshDB','loadDB','saveDB','doLogin','quickLogin','logout','registrarLog','bootApp','buildNav','go','gravarNotas','gravarExames','gravarRecursos','executarRenovacoes','importarBD','resetBD','situacaoAluno','canEdit','propinasEmDia','alunoAvaliado','exportarAlunosCSV','exportarElegiveisCSV','imprimirDividas']);
+const remove=new Set(['freshDB','loadDB','saveDB','doLogin','quickLogin','logout','registrarLog','bootApp','buildNav','go','gravarNotas','gravarExames','gravarRecursos','executarRenovacoes','importarBD','resetBD','situacaoAluno','canEdit','propinasEmDia','alunoAvaliado','exportarAlunosCSV','exportarElegiveisCSV','imprimirDividas','previewExame']);
 const edits=[];
 for(const st of parsed.statements){
  if(ts.isFunctionDeclaration(st)&&remove.has(st.name.text))edits.push([st.getStart(parsed),st.end,'']);
@@ -38,6 +41,7 @@ source=source.replace(/on(click|change|input)="([^"]*)"/g,(_,event,code)=>{
  code=code.replace(/'\$\{([^}]+)\}'/g,(_,expr)=>'('+expr.replace(/^esc\((.*)\)$/,'$1')+')');
  code=code.replace(/\$\{([^}]+)\}/g,(_,expr)=>'('+expr.replace(/^esc\((.*)\)$/,'$1')+')');
  code=code.replaceAll('(x.f)()','reports[x.f]()').replace(/\bthis\b/g,'element');
+ const handler=ts.createSourceFile('event.js',code,ts.ScriptTarget.Latest,true,ts.ScriptKind.JS);const last=handler.statements.at(-1);if(last&&ts.isExpressionStatement(last))code=code.slice(0,last.getStart(handler))+'return '+code.slice(last.getStart(handler));
  return 'data-sige-'+event+'="${bind((event,element)=>{'+code+'})}"';
 });
 source=source.replace('onOk();','return onOk();');
@@ -66,7 +70,8 @@ source=source.replace(/num\(\$\('#c_(MaxNeg|NegRec|NotaRec)'\)\.value\)\|\|\d+/g
 source=source.replaceAll('DB.config.pesoMediaAnual||0.7','DB.config.pesoMediaAnual??0.7').replaceAll('DB.config.pesoExameFinal||0.3','DB.config.pesoExameFinal??0.3');
 source=source.replace(/DB.config.(pesoMediaAnual|pesoExameFinal)=num\(g\('\1'\)\)\|\|[\d.]+;/g,"DB.config.$1=num(g('$1'));");
 source=source.replaceAll('max="20"','max="${DB.config.escalaMax}"');
-source=source.replace("const bloqueada=(session.Perfil==='Professor' && atr && atr.Locked);","const bloqueada=(session.Perfil==='Professor' && ((atr && atr.Locked) || alunos.some(x=>getNotaReg(x.ins.IdInscricao,st.materia,t.Ano)?.Locks?.[perKey])));");
+source=source.replace("const bloqueada=(session.Perfil==='Professor' && atr && atr.Locked);","const bloqueada=(session.Perfil==='Professor' && atr && atr.Locked);");
+source=source.replace("const tri=reg[perKey]||{MAC:'',NPP:'',NPT:''};","const tri=reg[perKey]||{MAC:'',NPP:'',NPT:''};");
 source=source.replace('getNotaReg(x.ins.IdInscricao,st.materia)||{}','getNotaReg(x.ins.IdInscricao,st.materia,t.Ano)||{}');
 source=source.replace('return nf!==null && nf<num(DB.config.notaMinima);','return recursoElegivel(x.ins,reg);');
 source=source.replace('const ef=reg.ExameFinal;',"const ef=reg[examField(st.tipo)];");
@@ -86,6 +91,12 @@ source=source.replace("const pags=DB.pagamentos.filter(p=>p.CodAluno===i.CodAlun
     const paid=DB.pagamentos.filter(p=>String(p.CodInscricao)===String(i.IdInscricao)&&p.Referente.startsWith('Propina')).reduce((s,p)=>s+num(p.Valor),0);
     const pags=cl.Propina?Math.min(devidos,paid/cl.Propina):devidos;`);
 source=source.replaceAll("].map(x=>`<div class=\"card\"", "].filter(x=>x.f!=='relFuncionarios'||can('funcionarios')).map(x=>`<div class=\"card\"");
+const gradeStart=source.indexOf('function renderNotas(){'),gradeEnd=source.indexOf('function previewMedia',gradeStart);
+let gradeView=source.slice(gradeStart,gradeEnd);
+gradeView=gradeView.replace("${bloqueada?'disabled':''}","${bloqueada||(session.Perfil==='Professor'&&reg.Locks?.[perKey])?'disabled':''}");
+gradeView=gradeView.replace('  const rows=alunos.map',"  const todasBloqueadas=bloqueada||(session.Perfil==='Professor'&&alunos.every(x=>getNotaReg(x.ins.IdInscricao,st.materia,t.Ano)?.Locks?.[perKey]));\n  const rows=alunos.map");
+gradeView=gradeView.replaceAll("${bloqueada?", "${todasBloqueadas?");
+source=source.slice(0,gradeStart)+gradeView+source.slice(gradeEnd);
 const prefix=fs.readFileSync('scripts/renderer-prefix.js','utf8');
 const suffix=fs.readFileSync('scripts/renderer-suffix.js','utf8');
 fs.writeFileSync('frontend/src/app/promax/promax-renderer.js','// Generated by scripts/build-promax.cjs from the original reference.\nexport function createPromaxRenderer(host,bridge){\n'+prefix+'\n'+source+'\n'+suffix+'\n}\n');

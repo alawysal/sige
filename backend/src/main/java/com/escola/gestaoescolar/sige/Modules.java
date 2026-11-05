@@ -5,7 +5,7 @@ public final class Modules {
  public record Ref(String column,String field,String target) {}
  public record Module(String name,String key,List<Ref> refs) { public String table(){return "sige_"+name.toLowerCase(Locale.ROOT);} }
  private static Ref ref(String field,String target){return new Ref(field.toLowerCase(Locale.ROOT),field,target);}
- private static Module m(String name,String key,Ref...refs){return new Module(name,key,List.of(refs));}
+ private static Module m(String name,String key,Ref...refs){List<Ref> links=new ArrayList<>(List.of(refs));if(Schools.owned(name)&&links.stream().noneMatch(r->r.field().equals("CodEscola")))links.add(ref("CodEscola","escolas"));return new Module(name,key,List.copyOf(links));}
  public static final List<Module> ALL=List.of(
   m("anosLectivos","Ano"),m("escolas","CodEscola"),m("cursos","CodCurso"),m("classes","IdClasse",ref("CodEscola","escolas")),
   m("materias","IdMateria"),m("funcionarios","IdFuncionario"),m("alunos","IdAluno"),

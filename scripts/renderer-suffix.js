@@ -1,17 +1,24 @@
 function situacaoAluno(id){return DB.resultados?.[String(id)]||null;}
 function examField(tipo){return {'Exame Normal':'ExameFinal','Exame de Recurso':'ExameRecurso','Exame Especial':'ExameEspecial','Exame de Acesso':'ExameAcesso'}[tipo]||'ExameFinal';}
 function gradeValue(input){const raw=input.value.trim();if(raw==='')return null;const value=Number(raw);if(!Number.isInteger(value)||value<0||value>DB.config.escalaMax)throw new Error('A nota deve ser inteira, entre 0 e '+DB.config.escalaMax+'.');return value;}
-function gravarNotas(codTurma,idMat,periodo){
+function gravarNotas(codTurma,idMat,periodo,validate=false){
  const perKey=periodo.replace(' ','_'),year=getTurma(codTurma).Ano;
  const rows=new Map();
- for(const input of $$('#areaNotas .nota-input')){const id=input.dataset.ins;if(!rows.has(id))rows.set(id,{});rows.get(id)[input.dataset.tp]=gradeValue(input);}
+ for(const input of $$('#areaNotas .nota-input')){if(input.disabled)continue;const id=input.dataset.ins;if(!rows.has(id))rows.set(id,{});rows.get(id)[input.dataset.tp]=gradeValue(input);}
  for(const [id,values] of rows){
-  if(Object.values(values).every(v=>v===null)&&!getNotaReg(id,idMat,year))continue;
+  if(Object.values(values).every(v=>v===null)&&!getNotaReg(id,idMat,year)){if(validate)throw Error('Preencha e guarde as notas de todos os alunos antes de validar.');continue;}
   let reg=getNotaReg(id,idMat,year);if(!reg)reg=criarNotaReg(id,idMat,year);
   reg[perKey]=values;
-  if(session.Perfil==='Professor'&&Object.values(values).some(v=>v!==null))reg.SubmitTerm=perKey;
+  if(session.Perfil==='Professor'){if(validate)reg.SubmitTerm=perKey;else reg.DraftTerm=perKey;}
  }
- saveDB();needsRender=true;toast('Notas gravadas.');
+ saveDB();needsRender=true;toast(session.Perfil==='Professor'?(validate?'Período validado e bloqueado.':'Rascunho guardado. Pode continuar a editar.'):'Notas gravadas.');
+}
+function validarPeriodo(codTurma,idMat,periodo){confirmar('Validar as notas de todos os alunos neste período? Após a validação, o professor deixa de as poder editar.',()=>gravarNotas(codTurma,idMat,periodo,true),'✓ Validar e bloquear',false);}
+function previewExame(input){
+ const grade=structuredClone(getNotaReg(input.dataset.ins,state.exame.materia)||{});
+ grade[examField(state.exame.tipo)]=gradeValue(input);
+ const value=notaFinalComRecurso(grade),cell=input.closest('tr').querySelector('.media-cell');
+ cell.innerHTML=value===null?'—':`<b class="${value>=DB.config.notaMinima?'nota-ok':'nota-bad'}">${value}</b>`;
 }
 function gravarExames(codTurma,idMat,tipo){
  const field=examField(tipo),year=getTurma(codTurma).Ano;
@@ -29,7 +36,8 @@ function recursoElegivel(ins,reg){
  if(!reg)return false;
  const final=notaFinalDisciplina(reg),cls=getClasse(ins.Classe,ins.Ano);
  const complete=['I_Trimestre','II_Trimestre','III_Trimestre'].every(term=>['MAC','NPP','NPT'].every(type=>reg[term]?.[type]!=null))&&(DB.config.pesoExameFinal===0||reg.ExameFinal!=null);
- const negative=DB.notas.filter(n=>n.CodInscricao===ins.IdInscricao&&notaFinalDisciplina(n)!=null&&notaFinalDisciplina(n)<DB.config.notaMinima).length;
+ const subjects=new Set(DB.atribuicoes.filter(a=>a.CodTurma===ins.CodTurma&&a.Ano===ins.Ano).map(a=>String(a.IdMateria)));
+ const negative=DB.notas.filter(n=>n.CodInscricao===ins.IdInscricao&&subjects.has(String(n.CodMateria))&&notaFinalDisciplina(n)!=null&&notaFinalDisciplina(n)<DB.config.notaMinima).length;
  return DB.resultados?.[ins.IdInscricao]?.avaliado&&complete&&final!=null&&final<DB.config.notaMinima&&final>=(cls?.NotaRecurso??8)&&negative<=(cls?.NegRecurso??4);
 }
 function executarRenovacoes(){

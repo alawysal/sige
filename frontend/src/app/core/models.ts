@@ -15,6 +15,7 @@ export interface RendererBridge {
  restore(data: WorkspaceData): Promise<WorkspaceData>;
  reset(): Promise<WorkspaceData>;
  exportRenewals(year: string): Promise<string>;
+ backup(): Promise<WorkspaceData>;
  changed(data: WorkspaceData): void;
  navigate(view: string): void;
  busy(value: boolean): void;

@@ -30,6 +30,7 @@ public class Security {
   return http.csrf(c->c.disable()).sessionManagement(s->s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
    .authorizeHttpRequests(a->a.requestMatchers(HttpMethod.POST,"/api/auth/login").permitAll()
     .requestMatchers(HttpMethod.GET,"/api/health","/actuator/health").permitAll()
+    .requestMatchers(HttpMethod.GET,"/swagger-ui.html","/swagger-ui/**","/v3/api-docs","/v3/api-docs/**","/v3/api-docs.yaml").permitAll()
     .requestMatchers("/api/**").authenticated().anyRequest().denyAll())
    .exceptionHandling(e->e.authenticationEntryPoint((req,res,ex)->error(res,401,"Sessão inválida ou expirada."))
     .accessDeniedHandler((req,res,ex)->error(res,403,"Sem permissão para esta operação.")))
@@ -52,7 +53,13 @@ public class Security {
  static void error(HttpServletResponse res,int status,String message)throws IOException{res.setStatus(status);res.setContentType("application/json;charset=UTF-8");res.getWriter().write("{\"message\":\""+message+"\"}");}
  @Component public static class Tokens {
   private final Key key;private final long expiration;
-  public Tokens(@Value("${jwt.secret}")String secret,@Value("${jwt.expiration-ms}")long expiration){this.key=Keys.hmacShaKeyFor(Decoders.BASE64.decode(secret));this.expiration=expiration;}
+  public Tokens(@Value("${jwt.secret}")String secret,@Value("${jwt.expiration-ms}")long expiration){
+   byte[] keyBytes;
+   try { keyBytes = Decoders.BASE64.decode(secret); }
+   catch (IllegalArgumentException e) { keyBytes = secret.getBytes(java.nio.charset.StandardCharsets.UTF_8); }
+   this.key = Keys.hmacShaKeyFor(keyBytes);
+   this.expiration = expiration;
+  }
   public String issue(Store.Account user){return Jwts.builder().setSubject(user.username()).claim("version",user.version()).setIssuedAt(new Date()).setExpiration(new Date(System.currentTimeMillis()+expiration)).signWith(key,SignatureAlgorithm.HS256).compact();}
   public Claims read(String token){return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();}
  }
